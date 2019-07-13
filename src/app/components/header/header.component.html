@@ -1,0 +1,56 @@
+<mat-toolbar>
+  <div class="logo">
+    <a [routerLink]="['/']">
+      <img src="../../../assets/logo.png" alt="Logo image" />
+    </a>
+  </div>
+  <div class="right">
+    <div class="data">
+      <mat-card>
+        <div class="personal-image">
+          <img src="" alt="image" />
+        </div>
+        <div class="personal-data">
+          <form>
+            <div class="row">
+              <mat-form-field>
+                <input
+                  type="text"
+                  class="col-6"
+                  disabled
+                  placeholder="First name:"
+                  [(ngModel)]="name"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  type="text"
+                  class="col-6"
+                  disabled
+                  placeholder="Last name:"
+                  [(ngModel)]="lastName"
+                />
+              </mat-form-field>
+            </div>
+            <mat-form-field>
+              <input
+                type="text"
+                class="col-12"
+                disabled
+                placeholder="Position:"
+                [(ngModel)]="position"
+              />
+            </mat-form-field>
+          </form>
+        </div>
+      </mat-card>
+    </div>
+    <div class="buttons row">
+      <button mat-stroked-button color="primary">new rent</button>
+      <button mat-stroked-button color="primary">return book</button>
+      <button mat-stroked-button color="primary">new member</button>
+      <button mat-stroked-button color="primary">new book</button>
+      <button mat-stroked-button color="primary">admin panel</button>
+    </div>
+  </div>
+</mat-toolbar>
