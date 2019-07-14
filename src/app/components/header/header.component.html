@@ -1,56 +1,73 @@
-<mat-toolbar>
-  <div class="logo">
-    <a [routerLink]="['/']">
-      <img src="../../../assets/logo.png" alt="Logo image" />
-    </a>
-  </div>
-  <div class="right">
-    <div class="data">
-      <mat-card>
-        <div class="personal-image">
-          <img src="" alt="image" />
-        </div>
-        <div class="personal-data">
-          <form>
-            <div class="row">
-              <mat-form-field>
-                <input
-                  type="text"
-                  class="col-6"
-                  disabled
-                  placeholder="First name:"
-                  [(ngModel)]="name"
-                />
-              </mat-form-field>
-              <mat-form-field>
-                <input
-                  type="text"
-                  class="col-6"
-                  disabled
-                  placeholder="Last name:"
-                  [(ngModel)]="lastName"
-                />
-              </mat-form-field>
-            </div>
-            <mat-form-field>
-              <input
-                type="text"
-                class="col-12"
-                disabled
-                placeholder="Position:"
-                [(ngModel)]="position"
-              />
-            </mat-form-field>
-          </form>
-        </div>
-      </mat-card>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div class="logo">
+      <a [routerLink]="['/']">
+        <img src="../../../assets/logo.png" alt="Logo image" />
+      </a>
     </div>
-    <div class="buttons row">
-      <button mat-stroked-button color="primary">new rent</button>
-      <button mat-stroked-button color="primary">return book</button>
-      <button mat-stroked-button color="primary">new member</button>
-      <button mat-stroked-button color="primary">new book</button>
-      <button mat-stroked-button color="primary">admin panel</button>
+    <span class="spacer"></span>
+
+    <div class="right">
+      <div class="data">
+        <mat-card>
+          <div class="personal-image col-2">
+            <img src="" alt="image" />
+          </div>
+
+          <div class="personal-data col-10">
+            <form>
+              <div class="row col-12">
+                <mat-form-field class="col-4">
+                  <mat-label class="small-font">First name:</mat-label>
+                  <input
+                    matInput
+                    type="text"
+                    disabled
+                    [(ngModel)]="name"
+                    name="name"
+                  />
+                </mat-form-field>
+                <mat-form-field class="col-4">
+                  <mat-label class="small-font">Last name:</mat-label>
+                  <input
+                    matInput
+                    type="text"
+                    disabled
+                    [(ngModel)]="lastName"
+                    name="lastName"
+                  />
+                </mat-form-field>
+                <mat-form-field class="col-4">
+                  <mat-label class="small-font">Position:</mat-label>
+                  <input
+                    matInput
+                    disabled
+                    [(ngModel)]="position"
+                    name="position"
+                  />
+                </mat-form-field>
+              </div>
+            </form>
+          </div>
+        </mat-card>
+      </div>
+
+      <div class="buttons col-12 d-flex justify-content-between">
+        <button mat-raised-button>new rent</button>
+        <span class="spacer"></span>
+
+        <button mat-raised-button>return book</button>
+        <span class="spacer"></span>
+
+        <button mat-raised-button>new member</button>
+        <span class="spacer"></span>
+
+        <button mat-raised-button>new book</button>
+        <span class="spacer"></span>
+
+        <button mat-raised-button>admin panel</button>
+      </div>
     </div>
-  </div>
+    <span class="spacer"></span>
+  </mat-toolbar-row>
 </mat-toolbar>

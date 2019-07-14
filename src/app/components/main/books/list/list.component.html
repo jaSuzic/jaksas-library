@@ -1,1 +1,74 @@
-<p>list works!</p>
+<div class="col-12">
+  <div class="d-flex justify-content-around pt-3">
+    <mat-form-field class="col-3">
+      <input
+        matInput
+        type="text"
+        placeholder="Book title"
+        [(ngModel)]="titleSearch"
+        (keyup)="titleValueChange()"
+      />
+      <button
+        mat-button
+        *ngIf="titleSearch"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="titleSearch = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="col-3">
+      <input
+        matInput
+        type="text"
+        placeholder="Book author"
+        [(ngModel)]="authorSearch"
+        (keyup)="authorValueChange()"
+      />
+      <button
+        mat-button
+        *ngIf="authorSearch"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="authorSearch = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="col-3">
+      <mat-label>Sort by: </mat-label>
+      <mat-select (selectionChange)="sortChange($event)">
+        <mat-option *ngFor="let item of items" [value]="item.key">
+          {{ item.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="book-list" *ngFor="let book of books">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Title: {{ book.title }} </mat-panel-title>
+        <mat-panel-description>
+          Author: {{ book.author }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      Year of publishing: {{ book.year }}
+      <mat-action-row>
+        <button mat-button color="primary" (click)="rentBook(book)">
+          Rent
+        </button>
+        <button mat-button color="primary" (click)="editBook(book)">
+          Edit
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
