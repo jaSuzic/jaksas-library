@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
+import { AddEditComponent } from '../../../modals/add-edit/add-edit.component';
 import { Book } from './../../../../models/book.model';
 import { BookService } from './../../../../services/book.service';
 
@@ -19,24 +21,39 @@ export class ListComponent implements OnInit {
     { key: "title: 1", value: "Title ▼" },
     { key: "title: -1", value: "Title ▲" }
   ];
+  length: number;
+  pageSize: number = 10;
+  pageIndex: number = 0;
+  pageSizeOptions: number[] = [2, 5, 10, 20, 50];
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.bookService.getBooks(this.sortBy).subscribe(res => {
-      this.books = res.books;
-      console.log("Evo resa: ", res);
+    this.callSearch();
+
+    this.bookService.getBooksStatus().subscribe(res => {
+      if (res) this.callSearch();
     });
   }
 
   titleValueChange() {
     console.log("triggered title");
     this.callSearch({ key: "title", value: this.titleSearch });
+    this.authorSearch = "";
+  }
+  clearTitle() {
+    this.titleSearch = "";
+    this.titleValueChange();
   }
 
   authorValueChange() {
     console.log("triggered author");
     this.callSearch({ key: "author", value: this.authorSearch });
+    this.titleSearch = "";
+  }
+  clearAuthor() {
+    this.authorSearch = "";
+    this.authorValueChange();
   }
 
   callSearch(params?: { key: string; value: string }) {
@@ -44,9 +61,13 @@ export class ListComponent implements OnInit {
     if (params) {
       paramsForSending = params.key + "=" + params.value;
     }
-    this.bookService.getBooks(this.sortBy, paramsForSending).subscribe(res => {
-      this.books = res.books;
-    });
+    this.bookService
+      .getBooks(this.sortBy, this.pageSize, this.pageIndex, paramsForSending)
+      .subscribe(res => {
+        console.log("evo resa: ", res);
+        this.books = res.books;
+        this.length = res.count;
+      });
   }
   sortChange(e) {
     console.log(e);
@@ -64,5 +85,32 @@ export class ListComponent implements OnInit {
     }
 
     this.sortBy = e.value;
+  }
+
+  rentBook(book) {}
+
+  editBook(book) {
+    const dialogRef = this.dialog.open(AddEditComponent, {
+      data: {
+        edit: true,
+        title: book.title,
+        author: book.author,
+        year: book.year,
+        id: book._id
+      },
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+    });
+  }
+  changePagination(e) {
+    console.log(e);
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+    //pageIndex - broj strane
+    //pageSize - koliko po strani
+    this.callSearch();
   }
 }

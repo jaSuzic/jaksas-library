@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+
+import { AddEditComponent } from '../modals/add-edit/add-edit.component';
 
 @Component({
   selector: "app-header",
@@ -10,7 +13,24 @@ export class HeaderComponent implements OnInit {
   lastName: string = "test";
   position: string = "test";
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {}
+
+  addNewBook() {
+    const dialogRef = this.dialog.open(AddEditComponent, {
+      data: {
+        edit: false,
+        title: "",
+        author: "",
+        year: "",
+        id: ""
+      },
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+    });
+  }
 }

@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <h3 mat-dialog-title>{{ data.edit ? "Edit book" : "Add new book" }}</h3>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput placeholder="Book title" type="text" [(ngModel)]="data.title" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Book author" type="text" [(ngModel)]="data.author" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Year of release" type="number" [(ngModel)]="data.year" />
+    </mat-form-field>
+
+    <button mat-button color="primary" [mat-dialog-close]="false">
+      Close
+    </button>
+    <button mat-button color="primary" (click)="save()">
+      {{data.edit? 'Save' : 'Add'}}
+    </button>
+    <button mat-button *ngIf='data.edit' color="warn" (click)="delete() ">
+      Delete
+    </button>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { Book } from './../models/book.model';
@@ -13,10 +14,11 @@ const BACKEND_URL = environment.apiUrl + "/books";
 export class BookService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  getBooks(sort: string, filter?: string) {
+  private booksStatus = new BehaviorSubject([]);
+
+  getBooks(sort: string, pageSize: number, pageIndex: number, filter?: string) {
     let params = filter ? filter : "";
     let sortParams = sort.split(": ");
-    console.log("evo ga sortParams: ", sortParams);
     let url =
       BACKEND_URL +
       "?" +
@@ -24,11 +26,39 @@ export class BookService {
       "&sortItem=" +
       sortParams[0] +
       "&order=" +
-      sortParams[1];
-    console.log("evo ga novi URL: ", url);
+      sortParams[1] +
+      "&pageIndex=" +
+      pageIndex +
+      "&pageSize=" +
+      pageSize;
 
     return this.http.get<{ message: string; books: Book[]; count: number }>(
       url
     );
+  }
+
+  saveBook(title: string, author: string, year: number) {
+    const newBook = { title: title, author: author, year: year };
+    return this.http.post<{ message: string }>(BACKEND_URL, newBook);
+  }
+
+  deleteBook(id: string) {
+    return this.http.delete(BACKEND_URL + "/" + id);
+  }
+
+  updateBook(id: string, title: string, author: string, year: number) {
+    return this.http.put(BACKEND_URL + "/" + id, {
+      title: title,
+      author: author,
+      year: year
+    });
+  }
+
+  booksUpdated() {
+    this.booksStatus.next([]);
+  }
+
+  getBooksStatus() {
+    return this.booksStatus.asObservable();
   }
 }

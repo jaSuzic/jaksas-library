@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatCardModule,
+  MatDialogModule,
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
+  MatPaginatorModule,
   MatSelectModule,
   MatToolbarModule,
 } from '@angular/material';
@@ -18,6 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ListComponent } from './components/main/books/list/list.component';
+import { AddEditComponent } from './components/modals/add-edit/add-edit.component';
+import { ConfirmationModalComponent } from './components/modals/confirmation-modal/confirmation-modal.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
@@ -25,7 +29,9 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     AppComponent,
     HeaderComponent,
     SidenavComponent,
-    ListComponent
+    ListComponent,
+    AddEditComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +45,11 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatButtonModule,
     MatExpansionModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
+    MatPaginatorModule
   ],
+  entryComponents: [AddEditComponent, ConfirmationModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

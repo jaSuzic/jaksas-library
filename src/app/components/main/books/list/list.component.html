@@ -1,48 +1,22 @@
 <div class="col-12">
   <div class="d-flex justify-content-around pt-3">
     <mat-form-field class="col-3">
-      <input
-        matInput
-        type="text"
-        placeholder="Book title"
-        [(ngModel)]="titleSearch"
-        (keyup)="titleValueChange()"
-      />
-      <button
-        mat-button
-        *ngIf="titleSearch"
-        matSuffix
-        mat-icon-button
-        aria-label="Clear"
-        (click)="titleSearch = ''"
-      >
+      <input matInput type="text" placeholder="Book title" [(ngModel)]="titleSearch" (keyup)="titleValueChange()" />
+      <button mat-button *ngIf="titleSearch" matSuffix mat-icon-button aria-label="Clear" (click)="clearTitle()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
 
     <mat-form-field class="col-3">
-      <input
-        matInput
-        type="text"
-        placeholder="Book author"
-        [(ngModel)]="authorSearch"
-        (keyup)="authorValueChange()"
-      />
-      <button
-        mat-button
-        *ngIf="authorSearch"
-        matSuffix
-        mat-icon-button
-        aria-label="Clear"
-        (click)="authorSearch = ''"
-      >
+      <input matInput type="text" placeholder="Book author" [(ngModel)]="authorSearch" (keyup)="authorValueChange()" />
+      <button mat-button *ngIf="authorSearch" matSuffix mat-icon-button aria-label="Clear" (click)="clearAuthor()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
 
     <mat-form-field class="col-3">
       <mat-label>Sort by: </mat-label>
-      <mat-select (selectionChange)="sortChange($event)">
+      <mat-select (selectionChange)="sortChange($event)" [(value)]='sortBy'>
         <mat-option *ngFor="let item of items" [value]="item.key">
           {{ item.value }}
         </mat-option>
@@ -71,4 +45,11 @@
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
+</div>
+
+<div class="paginator mt-3">
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+    (page)=changePagination($event)>
+  </mat-paginator>
+
 </div>
