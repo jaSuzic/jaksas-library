@@ -43,7 +43,7 @@ export class ListComponent implements OnInit {
   }
   clearTitle() {
     this.titleSearch = "";
-    this.titleValueChange();
+    this.callSearch();
   }
 
   authorValueChange() {
@@ -53,7 +53,7 @@ export class ListComponent implements OnInit {
   }
   clearAuthor() {
     this.authorSearch = "";
-    this.authorValueChange();
+    this.callSearch();
   }
 
   callSearch(params?: { key: string; value: string }) {
@@ -111,6 +111,10 @@ export class ListComponent implements OnInit {
     this.pageIndex = e.pageIndex;
     //pageIndex - broj strane
     //pageSize - koliko po strani
-    this.callSearch();
+    if (this.titleSearch) {
+      this.titleValueChange();
+    } else if (this.authorSearch) {
+      this.authorValueChange();
+    } else this.callSearch();
   }
 }
