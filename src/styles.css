@@ -2,3 +2,19 @@
 
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+.long-text {
+  white-space: normal !important;
+  line-height: normal !important;
+}
+
+/* First breakpoint */
+@media only screen and (min-width: 700px) {}
+
+@media only screen and (min-width: 1100px) {}
+
+@media only screen and (min-width: 1300px) {
+  .long-text {
+    line-height: inherit !important;
+  }
+}

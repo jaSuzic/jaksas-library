@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { AddEditComponent } from '../../../modals/add-edit/add-edit.component';
+import { AddEditComponent } from '../../../modals/add-edit-book/add-edit.component';
 import { Book } from './../../../../models/book.model';
 import { BookService } from './../../../../services/book.service';
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { AddEditComponent } from '../modals/add-edit/add-edit.component';
+import { AddEditComponent } from '../modals/add-edit-book/add-edit.component';
+import { AddEditMemberComponent } from './../modals/add-edit-member/add-edit-member.component';
 
 @Component({
   selector: "app-header",
@@ -31,6 +32,19 @@ export class HeaderComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
+    });
+  }
+
+  addNewMember() {
+    const dialogRef = this.dialog.open(AddEditMemberComponent, {
+      data: {
+        edit: false,
+        firstName: "",
+        lastName: "",
+        birthDate: "",
+        id: ""
+      },
+      disableClose: true
     });
   }
 }

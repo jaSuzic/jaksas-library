@@ -1,10 +1,10 @@
-.logo{
+.logo {
   margin: .5rem 1rem auto;
   display: block;
   flex: 1;
 }
 
-.right{
+.right {
   flex: 2 auto;
   display: block;
 }
@@ -13,34 +13,34 @@
   flex: 1 auto;
 }
 
- mat-toolbar-row{
-   height: auto !important;
-   display: flex;
- }
+mat-toolbar-row {
+  height: auto !important;
+  display: flex;
+}
 
- .personal-image{
-   height: auto;
-   width: 10rem;
- }
+.personal-image {
+  height: auto;
+  width: 10rem;
+}
 
- mat-card {
-   display: flex;
-   margin-top: 1rem;
-   background: rgba(238, 238, 238, .3)
- }
+mat-card {
+  display: flex;
+  margin-top: 1rem;
+  background: rgba(238, 238, 238, .3)
+}
 
- .small-font {
-   font-size: .75em;
- }
+.small-font {
+  font-size: .75em;
+}
 
- mat-form-field{
-   margin-bottom: -1em;
- }
+mat-form-field {
+  margin-bottom: -1em;
+}
 
- .buttons{
-   padding: .2em 0;
- }
- .buttons button{
-   flex: 3;
- }
+.buttons {
+  padding: .2em 0;
+}
 
+.buttons button {
+  flex: 3;
+}

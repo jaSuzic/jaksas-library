@@ -1,16 +1,18 @@
 <div class="wrapper">
-  <h3 mat-dialog-title>{{ data.edit ? "Edit book" : "Add new book" }}</h3>
+  <h3 mat-dialog-title>{{ data.edit ? "Edit member" : "Add new member" }}</h3>
   <div mat-dialog-content>
     <mat-form-field>
-      <input matInput placeholder="Book title" type="text" [(ngModel)]="data.title" />
+      <input matInput placeholder="First name" type="text" [(ngModel)]="data.firstName" />
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Book author" type="text" [(ngModel)]="data.author" />
+      <input matInput placeholder="Last name" type="text" [(ngModel)]="data.lastName" />
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Year of release" type="number" [(ngModel)]="data.year" />
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="data.birthDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <button mat-button color="primary" [mat-dialog-close]="false">
