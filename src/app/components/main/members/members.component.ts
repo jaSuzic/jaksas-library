@@ -25,6 +25,14 @@ export class MembersComponent implements OnInit {
   constructor(private memberService: MemberService, public dialog: MatDialog) {}
 
   ngOnInit() {
+    this.callSearch();
+
+    this.memberService.getMembersStatus().subscribe(res => {
+      if (res) this.callSearch();
+    });
+  }
+
+  callSearch() {
     this.memberService.getMembers().subscribe(res => {
       console.log("evo ga res za member: ", res);
       let members = res.members.map(member => {

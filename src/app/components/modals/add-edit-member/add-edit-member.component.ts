@@ -1,14 +1,19 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
+import { APP_DATE_FORMATS, AppDateAdapter } from './../../../helpers/format-datepicker';
 import { MemberService } from './../../../services/member.service';
 import { ConfirmationModalComponent } from './../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: "app-add-edit-member",
   templateUrl: "./add-edit-member.component.html",
-  styleUrls: ["./add-edit-member.component.css"]
+  styleUrls: ["./add-edit-member.component.css"],
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ]
 })
 export class AddEditMemberComponent implements OnInit {
   constructor(
@@ -23,7 +28,7 @@ export class AddEditMemberComponent implements OnInit {
 
   save() {
     console.log(this.data);
-    /* if (this.data.edit) {
+    if (this.data.edit) {
       this.memberService
         .updateMember(
           this.data.id,
@@ -57,7 +62,7 @@ export class AddEditMemberComponent implements OnInit {
             //do something with error
           }
         );
-    } */
+    }
     //try save if success then this.dialogRef.close(); if not display message
   }
 
