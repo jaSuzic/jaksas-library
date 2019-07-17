@@ -39,13 +39,12 @@ export class MemberService {
     id: string,
     firstName: string,
     lastName: string,
-    birthDate: number
+    birthDate: Date
   ) {
     return this.http.put(BACKEND_URL + "/" + id, {
       name: firstName,
       lastName: lastName,
-      birthDate: birthDate,
-      _id: id
+      birthDate: birthDate
     });
   }
 

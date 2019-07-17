@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
-import { Member } from './../../../models/member.model';
+import { AddEditMemberComponent } from '../../modals/add-edit-member/add-edit-member.component';
 import { MemberService } from './../../../services/member.service';
 
 @Component({
@@ -17,24 +17,31 @@ export class MembersComponent implements OnInit {
     "btnHistory",
     "btnEdit"
   ];
-  dataSource: MatTableDataSource<Member>;
+  dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private memeberService: MemberService) {}
+  constructor(private memberService: MemberService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.memeberService.getMembers().subscribe(res => {
+    this.memberService.getMembers().subscribe(res => {
       console.log("evo ga res za member: ", res);
-      this.dataSource = new MatTableDataSource(res.members);
+      let members = res.members.map(member => {
+        return {
+          name: member.firstName,
+          lastName: member.lastName,
+          _id: member._id,
+          birthDate: member.birthDate
+        };
+      });
+      this.dataSource = new MatTableDataSource(members);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
 
   applyFilter(filterValue: string) {
-    console.log("evo ga rezultat iz filtera: ", filterValue);
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
@@ -47,6 +54,19 @@ export class MembersComponent implements OnInit {
   }
 
   editMember(row) {
-    console.log(row);
+    const dialogRef = this.dialog.open(AddEditMemberComponent, {
+      data: {
+        edit: true,
+        firstName: row.name,
+        lastName: row.lastName,
+        birthDate: row.birthDate,
+        id: row._id
+      },
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+    });
   }
 }
