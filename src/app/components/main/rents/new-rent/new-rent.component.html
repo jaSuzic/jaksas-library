@@ -1,37 +1,60 @@
 <mat-horizontal-stepper [linear]="false" #stepper>
   <mat-step [stepControl]="chosenMember">
-
-    <ng-template matStepLabel></ng-template>
-    <mat-card *ngIf='chosenMember' class="text-center">
-      <p>You selected member: <strong>{{chosenMember.firstName}} {{chosenMember.lastName}}</strong> with date of birth:
-        {{chosenMember.birthDate | date: "dd/MM/yy"}}.</p>
-      <button mat-button matStepperNext [disabled]='!chosenMember'>Go to next step<mat-icon>arrow_forward</mat-icon>
+    <!-- FIRST STEP -->
+    <ng-template matStepLabel>Select member</ng-template>
+    <mat-card *ngIf="chosenMember" class="text-center">
+      <p>
+        You selected member:
+        <strong
+          >{{ chosenMember.firstName }} {{ chosenMember.lastName }}</strong
+        >
+        with date of birth: {{ chosenMember.birthDate | date: "dd/MM/yy" }}.
+      </p>
+      <button mat-button matStepperNext [disabled]="!chosenMember">
+        Go to next step<mat-icon>arrow_forward</mat-icon>
       </button>
     </mat-card>
-    <app-members-select (selectedMember)='choseMember($event)'></app-members-select>
+    <app-members-select
+      (selectedMember)="choseMember($event)"
+    ></app-members-select>
   </mat-step>
   <mat-step [stepControl]="chosenBook">
-    <ng-template matStepLabel>Fill out your address</ng-template>
-    <mat-card *ngIf='chosenBook' class="text-center">
-      <p>You selected book: <strong>{{chosenBook.title}}</strong> from <strong>{{chosenBook.author}}</strong> released
-        {{chosenBook.year}} year.</p>
-      <button mat-button matStepperNext [disabled]='!chosenBook'>Go to next step<mat-icon>arrow_forward</mat-icon>
+    <!-- SECOND step -->
+    <ng-template matStepLabel>Select book</ng-template>
+    <mat-card *ngIf="chosenBook" class="text-center">
+      <p>
+        You selected book: <strong>{{ chosenBook.title }}</strong> from
+        <strong>{{ chosenBook.author }}</strong> released
+        {{ chosenBook.year }} year.
+      </p>
+      <button mat-button matStepperNext [disabled]="!chosenBook">
+        Go to next step<mat-icon>arrow_forward</mat-icon>
       </button>
     </mat-card>
-    <app-books-select></app-books-select>
+    <app-books-select (selectedBook)="choseBook($event)"></app-books-select>
   </mat-step>
   <mat-step [stepControl]="datesFormGroup">
-    <ng-template matStepLabel>Fill out your address</ng-template>
-    <mat-form-field>
-      <input matInput placeholder="Address" required>
-    </mat-form-field>
+    <!-- THIRD &FINAL step -->
+    <ng-template matStepLabel>Final check</ng-template>
+    You selected user:
+    <mat-card>
+      {{ selectedMember.firstName }} {{ selectedMember.lastName }}<br />
+      {{ selectedMember.birthDate }}
+    </mat-card>
+    And this book:
+    <mat-card>
+      {{ selectedBook.title }} <br />
+      {{ selectedBook.author }} <br />
+      {{ selectedBook.year }}
+    </mat-card>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
     </div>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
+    <!-- FINAL step -->
+    <ng-template matStepLabel>Final check</ng-template>
     You are now done.
     <div>
       <button mat-button matStepperPrevious>Back</button>

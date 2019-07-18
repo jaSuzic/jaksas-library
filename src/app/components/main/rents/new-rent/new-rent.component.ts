@@ -22,6 +22,8 @@ export class NewRentComponent implements OnInit {
       birthDate: row.birthDate,
       _id: row._id
     };
-    console.log(this.chosenMember, row);
+  }
+  choseBook(book) {
+    this.chosenBook = book;
   }
 }

@@ -27,13 +27,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ListComponent } from './components/main/books/list/list.component';
 import { MembersComponent } from './components/main/members/members.component';
+import { BooksSelectComponent } from './components/main/rents/books-select/books-select.component';
+import { MembersSelectComponent } from './components/main/rents/members-select/members-select.component';
 import { NewRentComponent } from './components/main/rents/new-rent/new-rent.component';
 import { AddEditComponent } from './components/modals/add-edit-book/add-edit.component';
 import { AddEditMemberComponent } from './components/modals/add-edit-member/add-edit-member.component';
 import { ConfirmationModalComponent } from './components/modals/confirmation-modal/confirmation-modal.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { MembersSelectComponent } from './components/main/rents/members-select/members-select.component';
-import { BooksSelectComponent } from './components/main/rents/books-select/books-select.component';
 
 @NgModule({
   declarations: [
