@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatCardModule,
@@ -12,7 +12,9 @@ import {
   MatNativeDateModule,
   MatPaginatorModule,
   MatSelectModule,
+  MatSidenavModule,
   MatSortModule,
+  MatStepperModule,
   MatTableModule,
   MatToolbarModule,
 } from '@angular/material';
@@ -25,10 +27,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ListComponent } from './components/main/books/list/list.component';
 import { MembersComponent } from './components/main/members/members.component';
+import { NewRentComponent } from './components/main/rents/new-rent/new-rent.component';
 import { AddEditComponent } from './components/modals/add-edit-book/add-edit.component';
 import { AddEditMemberComponent } from './components/modals/add-edit-member/add-edit-member.component';
 import { ConfirmationModalComponent } from './components/modals/confirmation-modal/confirmation-modal.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { MembersSelectComponent } from './components/main/rents/members-select/members-select.component';
+import { BooksSelectComponent } from './components/main/rents/books-select/books-select.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,10 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     AddEditComponent,
     ConfirmationModalComponent,
     MembersComponent,
-    AddEditMemberComponent
+    AddEditMemberComponent,
+    NewRentComponent,
+    MembersSelectComponent,
+    BooksSelectComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +67,10 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatTableModule,
     MatSortModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSidenavModule,
+    MatStepperModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     AddEditComponent,

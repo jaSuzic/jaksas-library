@@ -4,7 +4,20 @@
       <app-header></app-header>
     </div>
   </div>
-  <div class="col-9 mx-auto">
-    <router-outlet></router-outlet>
-  </div>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+      <app-sidenav></app-sidenav>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+
+      <div class="col-9 mx-auto">
+        <button mat-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
