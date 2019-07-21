@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { Location } from '@angular/common';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter, MAT_DATE_FORMATS, MatStepper } from '@angular/material';
 import { Book } from 'src/app/models/book.model';
 import { Member } from 'src/app/models/member.model';
+import { RentService } from 'src/app/services/rent.service';
 
 import { APP_DATE_FORMATS, AppDateAdapter } from './../../../../helpers/format-datepicker';
 
@@ -22,7 +24,9 @@ export class NewRentComponent implements OnInit {
   memberForm: FormGroup;
   bookForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  @ViewChild(MatStepper, { static: false }) stepper: MatStepper;
+
+  constructor(private rentService: RentService, private location: Location) {}
 
   ngOnInit() {
     this.memberForm = new FormGroup({
@@ -45,5 +49,37 @@ export class NewRentComponent implements OnInit {
   choseBook(book) {
     this.chosenBook = book;
     this.bookForm.get("bookId").setValue(book._id);
+  }
+
+  resetObjectValues(obj: Object) {
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        obj[key] = null;
+      }
+    }
+    return obj;
+  }
+
+  saveRent() {
+    let rentDate = {
+      bookId: this.chosenBook._id,
+      memberId: this.chosenMember._id,
+      chosenDate: this.chosenDate
+    };
+    this.rentService
+      .saveRent(this.chosenMember._id, this.chosenBook._id, this.chosenDate)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.chosenBook = undefined;
+          this.chosenMember = undefined;
+          this.chosenDate = new Date();
+          this.stepper.reset();
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    console.log(rentDate);
   }
 }

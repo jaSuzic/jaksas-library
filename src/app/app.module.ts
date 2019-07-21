@@ -6,6 +6,7 @@ import {
   MatCardModule,
   MatDatepickerModule,
   MatDialogModule,
+  MatDividerModule,
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
@@ -28,6 +29,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { ListComponent } from './components/main/books/list/list.component';
 import { MembersComponent } from './components/main/members/members.component';
 import { BooksSelectComponent } from './components/main/rents/books-select/books-select.component';
+import { EditRentComponent } from './components/main/rents/edit-rent/edit-rent.component';
+import { ListRentsComponent } from './components/main/rents/list-rents/list-rents.component';
 import { MembersSelectComponent } from './components/main/rents/members-select/members-select.component';
 import { NewRentComponent } from './components/main/rents/new-rent/new-rent.component';
 import { AddEditComponent } from './components/modals/add-edit-book/add-edit.component';
@@ -47,7 +50,9 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     AddEditMemberComponent,
     NewRentComponent,
     MembersSelectComponent,
-    BooksSelectComponent
+    BooksSelectComponent,
+    ListRentsComponent,
+    EditRentComponent
   ],
   imports: [
     BrowserModule,
@@ -70,12 +75,15 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatNativeDateModule,
     MatSidenavModule,
     MatStepperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDividerModule
   ],
   entryComponents: [
     AddEditComponent,
     ConfirmationModalComponent,
-    AddEditMemberComponent
+    AddEditMemberComponent,
+    MembersSelectComponent,
+    BooksSelectComponent
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
