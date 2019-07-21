@@ -37,6 +37,7 @@ import { AddEditComponent } from './components/modals/add-edit-book/add-edit.com
 import { AddEditMemberComponent } from './components/modals/add-edit-member/add-edit-member.component';
 import { ConfirmationModalComponent } from './components/modals/confirmation-modal/confirmation-modal.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { LoginComponent } from './components/main/login/login.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MembersSelectComponent,
     BooksSelectComponent,
     ListRentsComponent,
-    EditRentComponent
+    EditRentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
