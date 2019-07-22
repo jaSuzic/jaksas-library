@@ -1,24 +1,7 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatDividerModule,
-  MatExpansionModule,
-  MatIconModule,
-  MatInputModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSortModule,
-  MatStepperModule,
-  MatTableModule,
-  MatToolbarModule,
-} from '@angular/material';
+import { MatDatepickerModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import bootstrap from 'bootstrap';
@@ -27,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ListComponent } from './components/main/books/list/list.component';
+import { LoginComponent } from './components/main/login/login.component';
 import { MembersComponent } from './components/main/members/members.component';
 import { BooksSelectComponent } from './components/main/rents/books-select/books-select.component';
 import { EditRentComponent } from './components/main/rents/edit-rent/edit-rent.component';
@@ -37,7 +21,8 @@ import { AddEditComponent } from './components/modals/add-edit-book/add-edit.com
 import { AddEditMemberComponent } from './components/modals/add-edit-member/add-edit-member.component';
 import { ConfirmationModalComponent } from './components/modals/confirmation-modal/confirmation-modal.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { LoginComponent } from './components/main/login/login.component';
+import { AuthInterceptor } from './helpers/auth-interceptor';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -61,24 +46,9 @@ import { LoginComponent } from './components/main/login/login.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatInputModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatSortModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSidenavModule,
-    MatStepperModule,
     ReactiveFormsModule,
-    MatDividerModule
+    MaterialModule
   ],
   entryComponents: [
     AddEditComponent,
@@ -87,7 +57,10 @@ import { LoginComponent } from './components/main/login/login.component';
     MembersSelectComponent,
     BooksSelectComponent
   ],
-  providers: [MatDatepickerModule],
+  providers: [
+    MatDatepickerModule,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,0 +1,1 @@
+Pogledaj od 13-e treba nesto malo doraditi. Ima ih 19.
