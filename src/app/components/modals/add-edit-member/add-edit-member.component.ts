@@ -27,7 +27,6 @@ export class AddEditMemberComponent implements OnInit {
   ngOnInit() {}
 
   save() {
-    console.log(this.data);
     if (this.data.edit) {
       this.memberService
         .updateMember(

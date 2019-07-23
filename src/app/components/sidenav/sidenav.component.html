@@ -1,21 +1,24 @@
 <ul class="list-group">
   <li class="list-group-item">Rents<br>
-    <a routerLink='/new-rent' routerLinkActive="active" class="list-group-item list-group-item-action">
+    <a routerLink='/new-rent' routerLinkActive="active" (click)='onClick()'
+      class="list-group-item list-group-item-action">
       Rent book
     </a>
-    <a routerLink='/rents' routerLinkActive="active" class="list-group-item list-group-item-action">
+    <a routerLink='/rents' routerLinkActive="active" (click)='onClick()' class="list-group-item list-group-item-action">
       All rents
     </a>
   </li>
   <li class="list-group-item">Members<br>
-    <a routerLink='/members' routerLinkActive="active" class="list-group-item list-group-item-action">
+    <a routerLink='/members' routerLinkActive="active" (click)='onClick()'
+      class="list-group-item list-group-item-action">
       All members
     </a></li>
   <li class="list-group-item">Books<br>
-    <a routerLink='/books' routerLinkActive="active" class="list-group-item list-group-item-action">
+    <a routerLink='/books' routerLinkActive="active" (click)='onClick()' class="list-group-item list-group-item-action">
       All books
     </a>
-    <a routerLink='/availableBooks' routerLinkActive="active" class="list-group-item list-group-item-action">
+    <a routerLink='/availableBooks' routerLinkActive="active" (click)='onClick()'
+      class="list-group-item list-group-item-action">
       Available books
     </a>
   </li>

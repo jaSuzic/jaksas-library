@@ -19,15 +19,15 @@
               <div class="row col-12">
                 <mat-form-field class="col-4">
                   <mat-label class="small-font">First name:</mat-label>
-                  <input matInput type="text" disabled [(ngModel)]="name" name="name" />
+                  <input matInput type="text" disabled [(ngModel)]="user.firstName" name="name" />
                 </mat-form-field>
                 <mat-form-field class="col-4">
                   <mat-label class="small-font">Last name:</mat-label>
-                  <input matInput type="text" disabled [(ngModel)]="lastName" name="lastName" />
+                  <input matInput type="text" disabled [(ngModel)]="user.lastName" name="lastName" />
                 </mat-form-field>
                 <mat-form-field class="col-4">
                   <mat-label class="small-font">Position:</mat-label>
-                  <input matInput disabled [(ngModel)]="position" name="position" />
+                  <input matInput disabled [(ngModel)]="user.position" name="position" />
                 </mat-form-field>
               </div>
             </form>
@@ -49,6 +49,11 @@
         <span class="spacer"></span>
 
         <button class='long-text' mat-raised-button>admin panel</button>
+
+        <span class="spacer"></span>
+
+        <button class='long-text' (click)='logout()' mat-raised-button>Logout</button>
+
       </div>
     </div>
     <span class="spacer"></span>

@@ -1,4 +1,4 @@
-<div class="col-12 p-0">
+<div class="col-12 p-0" *ngIf='isAuth'>
   <div class="col-12 p-0 primary-background">
     <div class="col-9 mx-auto">
       <app-header></app-header>
@@ -6,7 +6,7 @@
   </div>
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-      <app-sidenav></app-sidenav>
+      <app-sidenav (clicked)='closeSidenav() '></app-sidenav>
     </mat-sidenav>
 
     <mat-sidenav-content class="full-screen-height">
@@ -18,4 +18,8 @@
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
+</div>
+
+<div class="col-12" *ngIf='!isAuth'>
+  <router-outlet></router-outlet>
 </div>

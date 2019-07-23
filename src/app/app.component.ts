@@ -1,10 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material';
+
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   opened: boolean;
+  sub;
+  isAuth = false;
+  @ViewChild(MatSidenav, { static: false }) sidenav: MatSidenav;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.autoAuthUser();
+    this.sub = this.authService.getIsAuthObs().subscribe(
+      res => {
+        this.isAuth = res;
+      },
+      err => {
+        console.log("u erroru smo: ", err);
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  closeSidenav() {
+    this.sidenav.close();
+  }
 }

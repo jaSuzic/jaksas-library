@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { User } from 'src/app/models/user.model';
 
 import { AddEditComponent } from '../modals/add-edit-book/add-edit.component';
+import { AuthService } from './../../services/auth.service';
 import { AddEditMemberComponent } from './../modals/add-edit-member/add-edit-member.component';
 
 @Component({
@@ -13,10 +15,13 @@ export class HeaderComponent implements OnInit {
   name: string = "test";
   lastName: string = "test";
   position: string = "test";
+  user: User;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = this.authService.getUser();
+  }
 
   addNewBook() {
     const dialogRef = this.dialog.open(AddEditComponent, {
@@ -46,5 +51,9 @@ export class HeaderComponent implements OnInit {
       },
       disableClose: true
     });
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

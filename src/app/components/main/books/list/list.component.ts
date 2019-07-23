@@ -37,7 +37,6 @@ export class ListComponent implements OnInit {
   }
 
   titleValueChange() {
-    console.log("triggered title");
     this.callSearch({ key: "title", value: this.titleSearch });
     this.authorSearch = "";
   }
@@ -47,7 +46,6 @@ export class ListComponent implements OnInit {
   }
 
   authorValueChange() {
-    console.log("triggered author");
     this.callSearch({ key: "author", value: this.authorSearch });
     this.titleSearch = "";
   }
@@ -64,13 +62,11 @@ export class ListComponent implements OnInit {
     this.bookService
       .getBooks(this.sortBy, this.pageSize, this.pageIndex, paramsForSending)
       .subscribe(res => {
-        console.log("evo resa: ", res);
         this.books = res.books;
         this.length = res.count;
       });
   }
   sortChange(e) {
-    console.log(e);
     let field = e.value.split(": ")[0];
     let order = +e.value.split(": ")[1];
 
@@ -106,7 +102,6 @@ export class ListComponent implements OnInit {
     });
   }
   changePagination(e) {
-    console.log(e);
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
     //pageIndex - broj strane

@@ -34,7 +34,6 @@ export class MembersComponent implements OnInit {
 
   callSearch() {
     this.memberService.getMembers().subscribe(res => {
-      console.log("evo ga res za member: ", res);
       let members = res.members.map(member => {
         return {
           name: member.firstName,

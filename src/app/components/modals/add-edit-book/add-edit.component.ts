@@ -26,7 +26,6 @@ export class AddEditComponent implements OnInit {
   ngOnInit() {}
 
   save() {
-    console.log(this.data);
     if (this.data.edit) {
       this.bookService
         .updateBook(

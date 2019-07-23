@@ -70,7 +70,6 @@ export class NewRentComponent implements OnInit {
       .saveRent(this.chosenMember._id, this.chosenBook._id, this.chosenDate)
       .subscribe(
         res => {
-          console.log(res);
           this.chosenBook = undefined;
           this.chosenMember = undefined;
           this.chosenDate = new Date();
@@ -80,6 +79,5 @@ export class NewRentComponent implements OnInit {
           console.log(err);
         }
       );
-    console.log(rentDate);
   }
 }

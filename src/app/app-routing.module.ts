@@ -6,18 +6,20 @@ import { LoginComponent } from './components/main/login/login.component';
 import { MembersComponent } from './components/main/members/members.component';
 import { ListRentsComponent } from './components/main/rents/list-rents/list-rents.component';
 import { NewRentComponent } from './components/main/rents/new-rent/new-rent.component';
+import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
-  { path: "", component: ListComponent },
-  { path: "books", component: ListComponent },
-  { path: "members", component: MembersComponent },
-  { path: "new-rent", component: NewRentComponent },
-  { path: "rents", component: ListRentsComponent },
+  { path: "", component: ListComponent, canActivate: [AuthGuard] },
+  { path: "books", component: ListComponent, canActivate: [AuthGuard] },
+  { path: "members", component: MembersComponent, canActivate: [AuthGuard] },
+  { path: "new-rent", component: NewRentComponent, canActivate: [AuthGuard] },
+  { path: "rents", component: ListRentsComponent, canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule {}
