@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
@@ -14,6 +15,7 @@ export class AddEditComponent implements OnInit {
   title: string;
   author: string;
   year: number;
+  form: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<AddEditComponent>,
@@ -23,16 +25,34 @@ export class AddEditComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.form = new FormGroup({
+      title: new FormControl(null, Validators.required),
+      author: new FormControl(null, Validators.required),
+      year: new FormControl(null, Validators.required),
+      image: new FormControl(null)
+    });
+    if (this.data) {
+      if (this.data.edit) {
+        this.form.setValue({
+          title: this.data.title,
+          author: this.data.author,
+          year: this.data.year,
+          image: this.data.image
+        });
+      }
+    }
+  }
 
   save() {
     if (this.data.edit) {
       this.bookService
         .updateBook(
           this.data.id,
-          this.data.title,
-          this.data.author,
-          this.data.year
+          this.form.value.title,
+          this.form.value.author,
+          this.form.value.year
+          // this.form.value.image
         )
         .subscribe(
           res => {
@@ -45,7 +65,12 @@ export class AddEditComponent implements OnInit {
         );
     } else {
       this.bookService
-        .saveBook(this.data.title, this.data.author, this.data.year)
+        .saveBook(
+          this.form.value.title,
+          this.form.value.author,
+          this.form.value.year
+          // this.form.value.image
+        )
         .subscribe(
           res => {
             this.router.navigate(["/books"]);
@@ -79,5 +104,13 @@ export class AddEditComponent implements OnInit {
         );
       }
     });
+  }
+
+  onImagePicked(e: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({ image: file });
+    this.form.get("image").updateValueAndValidity();
+    console.log(file);
+    console.log(this.form);
   }
 }

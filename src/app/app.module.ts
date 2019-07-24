@@ -45,9 +45,9 @@ import { MaterialModule } from './material.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     MaterialModule
   ],
   entryComponents: [
