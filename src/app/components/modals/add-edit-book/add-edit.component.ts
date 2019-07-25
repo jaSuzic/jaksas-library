@@ -16,6 +16,7 @@ export class AddEditComponent implements OnInit {
   author: string;
   year: number;
   form: FormGroup;
+  imagePreview: string;
 
   constructor(
     public dialogRef: MatDialogRef<AddEditComponent>,
@@ -38,7 +39,7 @@ export class AddEditComponent implements OnInit {
           title: this.data.title,
           author: this.data.author,
           year: this.data.year,
-          image: this.data.image
+          image: this.data.image ? this.data.image : null
         });
       }
     }
@@ -68,8 +69,8 @@ export class AddEditComponent implements OnInit {
         .saveBook(
           this.form.value.title,
           this.form.value.author,
-          this.form.value.year
-          // this.form.value.image
+          this.form.value.year,
+          this.form.value.image ? this.form.value.image : null
         )
         .subscribe(
           res => {
@@ -110,7 +111,10 @@ export class AddEditComponent implements OnInit {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({ image: file });
     this.form.get("image").updateValueAndValidity();
-    console.log(file);
-    console.log(this.form);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 }

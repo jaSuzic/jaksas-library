@@ -92,7 +92,8 @@ export class ListComponent implements OnInit {
         title: book.title,
         author: book.author,
         year: book.year,
-        id: book._id
+        id: book._id,
+        image: book.imagePath ? book.imagePath : undefined
       },
       disableClose: true
     });

@@ -37,8 +37,13 @@ export class BookService {
     );
   }
 
-  saveBook(title: string, author: string, year: number) {
-    const newBook = { title: title, author: author, year: year };
+  saveBook(title: string, author: string, year: number, image: File) {
+    const newBook = new FormData();
+    newBook.append("title", title);
+    newBook.append("author", author);
+    newBook.append("year", year.toString());
+    newBook.append("image", image, title);
+    // const newBook = { title: title, author: author, year: year };
     return this.http.post<{ message: string }>(BACKEND_URL, newBook);
   }
 
