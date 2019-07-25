@@ -1,4 +1,12 @@
-
-.book-list{
+.book-list {
   padding-top: .7em
+}
+
+.cover-image {
+  height: 20rem;
+}
+
+.cover-image img {
+  width: 100%;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, .6)
 }

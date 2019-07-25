@@ -29,12 +29,21 @@
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title> Title: {{ book.title }} </mat-panel-title>
+        <mat-panel-title> {{ book.title }} </mat-panel-title>
         <mat-panel-description>
-          Author: {{ book.author }}
+          {{ book.author }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      Year of publishing: {{ book.year }}
+      <div class="d-flex">
+        <div class='col-6'>
+          Title: <strong>{{ book.title }}</strong> <br>
+          Author: <strong>{{ book.author }}</strong> <br>
+          Year of publishing: <strong>{{ book.year }}</strong>
+        </div>
+        <div class="col-6" *ngIf='book.imagePath' class='text-center'>
+          <img alt='cover' class='cover-image' [src]='book.imagePath'>
+        </div>
+      </div>
       <mat-action-row>
         <button mat-button color="primary" (click)="rentBook(book)">
           Rent

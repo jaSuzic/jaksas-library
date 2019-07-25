@@ -52,8 +52,8 @@ export class AddEditComponent implements OnInit {
           this.data.id,
           this.form.value.title,
           this.form.value.author,
-          this.form.value.year
-          // this.form.value.image
+          this.form.value.year,
+          this.form.value.image
         )
         .subscribe(
           res => {

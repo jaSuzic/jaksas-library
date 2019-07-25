@@ -51,12 +51,19 @@ export class BookService {
     return this.http.delete(BACKEND_URL + "/" + id);
   }
 
-  updateBook(id: string, title: string, author: string, year: number) {
-    return this.http.put(BACKEND_URL + "/" + id, {
-      title: title,
-      author: author,
-      year: year
-    });
+  updateBook(
+    id: string,
+    title: string,
+    author: string,
+    year: number,
+    image: File
+  ) {
+    const newBook = new FormData();
+    newBook.append("title", title);
+    newBook.append("author", author);
+    newBook.append("year", year.toString());
+    newBook.append("image", image, title);
+    return this.http.put(BACKEND_URL + "/" + id, newBook);
   }
 
   booksUpdated() {
