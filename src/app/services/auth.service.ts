@@ -18,7 +18,7 @@ export class AuthService {
   private isAuth = false;
   private tokenTimer: any;
   private user: User;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   createUser(
     email: string,
@@ -139,5 +139,16 @@ export class AuthService {
       expirationDate: new Date(expirationDate),
       user: user
     };
+  }
+
+  changePass(email: string, oldPass: string, newPass: string) {
+    return this.http
+      .post<{ message: string }>(
+        BACKEND_URL + "/updatePass",
+        {
+          email: email,
+          oldPass: oldPass,
+          newPass: newPass,
+        })
   }
 }
