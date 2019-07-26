@@ -23,6 +23,11 @@ import { ConfirmationModalComponent } from './components/modals/confirmation-mod
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AuthInterceptor } from './helpers/auth-interceptor';
 import { MaterialModule } from './material.module';
+import { ChangePassComponent } from './components/main/admin/change-pass/change-pass.component';
+import { ChangeImageComponent } from './components/main/admin/change-image/change-image.component';
+import { RegisterUserComponent } from './components/main/admin/register-user/register-user.component';
+import { ListUsersComponent } from './components/main/admin/list-users/list-users.component';
+import { AdminPanelComponent } from './components/main/admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,12 @@ import { MaterialModule } from './material.module';
     BooksSelectComponent,
     ListRentsComponent,
     EditRentComponent,
-    LoginComponent
+    LoginComponent,
+    ChangePassComponent,
+    ChangeImageComponent,
+    RegisterUserComponent,
+    ListUsersComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

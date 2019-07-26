@@ -18,7 +18,7 @@ export class AuthService {
   private isAuth = false;
   private tokenTimer: any;
   private user: User;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   createUser(
     email: string,
@@ -142,13 +142,17 @@ export class AuthService {
   }
 
   changePass(email: string, oldPass: string, newPass: string) {
-    return this.http
-      .post<{ message: string }>(
-        BACKEND_URL + "/updatePass",
-        {
-          email: email,
-          oldPass: oldPass,
-          newPass: newPass,
-        })
+    return this.http.post<{ message: string }>(BACKEND_URL + "/updatePass", {
+      email: email,
+      oldPass: oldPass,
+      newPass: newPass
+    });
+  }
+
+  changeImage(id: string, image: File) {
+    return this.http.post(BACKEND_URL + "/updateImage", {
+      id: id,
+      image: image
+    });
   }
 }
