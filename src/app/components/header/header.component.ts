@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 
 import { AddEditComponent } from '../modals/add-edit-book/add-edit.component';
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
   position: string = "test";
   user: User;
 
-  constructor(public dialog: MatDialog, private authService: AuthService) { }
+  constructor(public dialog: MatDialog, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.user = this.authService.getUser();
@@ -56,5 +57,9 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  adminPane() {
+    this.router.navigate(['/admin'])
   }
 }

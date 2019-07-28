@@ -18,38 +18,34 @@
 				<!-- FirstName Column -->
 				<ng-container matColumnDef="firstName">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>First name</th>
-					<td mat-cell *matCellDef="let row">{{ row.name }}</td>
+					<td mat-cell *matCellDef="let row">{{row.firstName}}</td>
 				</ng-container>
 
-				<!-- LastName Column -->
 				<ng-container matColumnDef="lastName">
 					<th mat-header-cell *matHeaderCellDef mat-sort-header>Last name</th>
 					<td mat-cell *matCellDef="let row">{{ row.lastName }}</td>
 				</ng-container>
 
+				<!-- LastName Column -->
+				<ng-container matColumnDef="email">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+					<td mat-cell *matCellDef="let row">{{ row.email }}</td>
+				</ng-container>
+
 				<!-- BirthDate Column -->
-				<ng-container matColumnDef="birthDate">
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>Birth date</th>
+				<ng-container matColumnDef="position">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
 					<td mat-cell *matCellDef="let row">
-						{{ row.birthDate | date: "dd/MM/yyyy" }}
+						{{ row.position }}
 					</td>
 				</ng-container>
 
 				<!-- Buttons Columns -->
-				<ng-container matColumnDef="btnHistory">
-					<th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-					<td mat-cell *matCellDef="let row">
-						<button mat-raised-button color="primary" class="m-2" (click)="rentHistory(row)">
-							Rent history
-						</button>
-					</td>
-					<!-- <mat-icon>history</mat-icon> -->
-				</ng-container>
 				<ng-container matColumnDef="btnEdit">
 					<th mat-header-cell *matHeaderCellDef></th>
 					<td mat-cell *matCellDef="let row">
 						<button mat-raised-button color="primary" class="m-2" (click)="editMember(row)">
-							Edit member
+							Edit user
 						</button>
 					</td>
 				</ng-container>

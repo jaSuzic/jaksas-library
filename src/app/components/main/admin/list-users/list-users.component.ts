@@ -3,6 +3,8 @@ import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/m
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
+import { EditUserComponent } from './../../../modals/edit-user/edit-user.component';
+
 @Component({
   selector: 'app-list-users',
   templateUrl: './list-users.component.html',
@@ -12,8 +14,8 @@ export class ListUsersComponent implements OnInit {
   displayedColumns: string[] = [
     "firstName",
     "lastName",
-    "birthDate",
-    "btnHistory",
+    "email",
+    "position",
     "btnEdit"
   ];
   dataSource: MatTableDataSource<any>;
@@ -26,14 +28,40 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.getUser();
-    console.log(this.user)
     this.callSearch()
   }
 
   callSearch() {
-    this.authService.getUsersExcept(this.user._id).subscribe(res => {
+    this.authService.getUsersExcept(this.user._id).subscribe((res: User[]) => {
       console.log(res)
+      this.dataSource = new MatTableDataSource(res)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
   }
 
+  editMember(row) {
+    const dialogRef = this.dialog.open(EditUserComponent, {
+      data: {
+        edit: true,
+        firstName: row.name,
+        lastName: row.lastName,
+        birthDate: row.birthDate,
+        id: row._id
+      },
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }

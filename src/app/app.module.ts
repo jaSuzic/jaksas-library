@@ -9,6 +9,11 @@ import bootstrap from 'bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AdminPanelComponent } from './components/main/admin/admin-panel/admin-panel.component';
+import { ChangeImageComponent } from './components/main/admin/change-image/change-image.component';
+import { ChangePassComponent } from './components/main/admin/change-pass/change-pass.component';
+import { ListUsersComponent } from './components/main/admin/list-users/list-users.component';
+import { RegisterUserComponent } from './components/main/admin/register-user/register-user.component';
 import { ListComponent } from './components/main/books/list/list.component';
 import { LoginComponent } from './components/main/login/login.component';
 import { MembersComponent } from './components/main/members/members.component';
@@ -20,14 +25,10 @@ import { NewRentComponent } from './components/main/rents/new-rent/new-rent.comp
 import { AddEditComponent } from './components/modals/add-edit-book/add-edit.component';
 import { AddEditMemberComponent } from './components/modals/add-edit-member/add-edit-member.component';
 import { ConfirmationModalComponent } from './components/modals/confirmation-modal/confirmation-modal.component';
+import { EditUserComponent } from './components/modals/edit-user/edit-user.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AuthInterceptor } from './helpers/auth-interceptor';
 import { MaterialModule } from './material.module';
-import { ChangePassComponent } from './components/main/admin/change-pass/change-pass.component';
-import { ChangeImageComponent } from './components/main/admin/change-image/change-image.component';
-import { RegisterUserComponent } from './components/main/admin/register-user/register-user.component';
-import { ListUsersComponent } from './components/main/admin/list-users/list-users.component';
-import { AdminPanelComponent } from './components/main/admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { AdminPanelComponent } from './components/main/admin/admin-panel/admin-p
     ChangeImageComponent,
     RegisterUserComponent,
     ListUsersComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { AdminPanelComponent } from './components/main/admin/admin-panel/admin-p
     ConfirmationModalComponent,
     AddEditMemberComponent,
     MembersSelectComponent,
-    BooksSelectComponent
+    BooksSelectComponent,
+    EditUserComponent
   ],
   providers: [
     MatDatepickerModule,
@@ -73,4 +76,4 @@ import { AdminPanelComponent } from './components/main/admin/admin-panel/admin-p
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
