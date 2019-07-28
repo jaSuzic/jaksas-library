@@ -18,26 +18,27 @@ export class AuthService {
   private isAuth = false;
   private tokenTimer: any;
   private user: User;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   createUser(
     email: string,
     password: string,
     firstName: string,
     lastName: string,
-    position: string
+    position: string,
+    image?: File
   ) {
-    this.http
-      .post(BACKEND_URL + "/register", {
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-        position: position
-      })
-      .subscribe(response => {
-        console.log(response);
-      });
+    const newUser = new FormData();
+    newUser.append('email', email);
+    newUser.append('password', password);
+    newUser.append('firstName', firstName);
+    newUser.append('lastName', lastName);
+    newUser.append('position', position);
+    if (image) {
+      newUser.append('image', image, email)
+    }
+    return this.http
+      .post(BACKEND_URL + "/register", newUser);
   }
 
   loginUser(email: string, password: string) {
@@ -150,9 +151,14 @@ export class AuthService {
   }
 
   changeImage(id: string, image: File) {
-    return this.http.post(BACKEND_URL + "/updateImage", {
-      id: id,
-      image: image
-    });
+    const newUserImage = new FormData();
+    newUserImage.append('id', id);
+    newUserImage.append('image', image, id);
+    return this.http.patch(BACKEND_URL + "/updateImage", newUserImage);
   }
+
+  getUsersExcept(id: string) {
+    return this.http.post(BACKEND_URL + '/getUsers', { id: id })
+  }
+
 }

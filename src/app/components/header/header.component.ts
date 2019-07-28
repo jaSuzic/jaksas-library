@@ -17,10 +17,11 @@ export class HeaderComponent implements OnInit {
   position: string = "test";
   user: User;
 
-  constructor(public dialog: MatDialog, private authService: AuthService) {}
+  constructor(public dialog: MatDialog, private authService: AuthService) { }
 
   ngOnInit() {
     this.user = this.authService.getUser();
+    console.log(this.user)
   }
 
   addNewBook() {

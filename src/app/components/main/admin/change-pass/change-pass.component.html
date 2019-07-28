@@ -9,25 +9,29 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <form [formGroup]='passGroup'></form>
-    <mat-form-field>
-      <input matInput placeholder="Current password" formControlName='oldPass'>
-    </mat-form-field>
+    <form [formGroup]='passGroup'>
+      <p>After saving change you'll have to login again.</p>
 
-    <mat-form-field>
-      <input matInput placeholder="New password" formControlName='newPass'>
-      <mat-error *ngIf="passGroup.get('newPass').hasError('notSame')">
-        This two fields must be same
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Current password" formControlName='oldPass'>
+      </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Confirm new password" formControlName='confirmPass'>
-      <mat-error *ngIf="passGroup.get('confirmPass').hasError('notSame')">
-        This two fields must be same
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="New password" formControlName='newPass'>
+        <mat-error *ngIf="passGroup.get('newPass').hasError('notSame')">
+          This two fields must be same
+        </mat-error>
+      </mat-form-field>
 
-    <button mat-raised-button [disabled]='passGroup.invalid' (click)='sendNewPass()'></button>
+      <mat-form-field>
+        <input matInput placeholder="Confirm new password" formControlName='confirmPass'>
+        <mat-error *ngIf="passGroup.get('confirmPass').hasError('notSame')">
+          This two fields must be same
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button [disabled]='!passGroup.valid' (click)='sendNewPass()'>Save password</button>
+      {{passGroup.valid}}
+    </form>
   </mat-expansion-panel>
 </mat-accordion>

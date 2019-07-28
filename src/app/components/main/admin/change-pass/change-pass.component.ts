@@ -12,7 +12,7 @@ export class ChangePassComponent implements OnInit {
   passGroup: FormGroup;
   user: User;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.user = this.authService.getUser();
@@ -41,9 +41,10 @@ export class ChangePassComponent implements OnInit {
     let newPass = this.passGroup.get("newPass").value;
     let oldPass = this.passGroup.get("oldPass").value;
     let email = this.user.email;
+    console.log('parametri: ', newPass, oldPass, email)
     this.authService.changePass(email, oldPass, newPass).subscribe(
       res => {
-        console.log(res);
+        this.authService.logout();
       },
       err => {
         //Test wrong pass (old)

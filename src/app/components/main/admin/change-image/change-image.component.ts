@@ -12,7 +12,7 @@ export class ChangeImageComponent implements OnInit {
   imagePreview;
   user: User;
   imageFormControl = new FormControl(null, [Validators.required]);
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.user = this.authService.getUser();
@@ -30,7 +30,11 @@ export class ChangeImageComponent implements OnInit {
   }
 
   sendNewImage() {
-    let file = this.imageFormControl.value;
-    this.authService.changeImage(this.user._id, file);
+    const file = this.imageFormControl.value.image;
+    this.authService.changeImage(this.user._id, file).subscribe(res => {
+      this.authService.logout();
+    }, err => {
+      console.log(err)
+    });
   }
 }
