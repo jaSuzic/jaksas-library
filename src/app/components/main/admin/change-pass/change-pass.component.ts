@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
+import { UserService } from './../../../../services/user.service';
+
 @Component({
   selector: "app-change-pass",
   templateUrl: "./change-pass.component.html",
@@ -12,7 +14,10 @@ export class ChangePassComponent implements OnInit {
   passGroup: FormGroup;
   user: User;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.user = this.authService.getUser();
@@ -41,8 +46,8 @@ export class ChangePassComponent implements OnInit {
     let newPass = this.passGroup.get("newPass").value;
     let oldPass = this.passGroup.get("oldPass").value;
     let email = this.user.email;
-    console.log('parametri: ', newPass, oldPass, email)
-    this.authService.changePass(email, oldPass, newPass).subscribe(
+    console.log("parametri: ", newPass, oldPass, email);
+    this.userService.changePass(email, oldPass, newPass).subscribe(
       res => {
         this.authService.logout();
       },

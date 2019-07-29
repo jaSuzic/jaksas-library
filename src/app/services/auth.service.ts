@@ -18,7 +18,7 @@ export class AuthService {
   private isAuth = false;
   private tokenTimer: any;
   private user: User;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   createUser(
     email: string,
@@ -29,16 +29,15 @@ export class AuthService {
     image?: File
   ) {
     const newUser = new FormData();
-    newUser.append('email', email);
-    newUser.append('password', password);
-    newUser.append('firstName', firstName);
-    newUser.append('lastName', lastName);
-    newUser.append('position', position);
+    newUser.append("email", email);
+    newUser.append("password", password);
+    newUser.append("firstName", firstName);
+    newUser.append("lastName", lastName);
+    newUser.append("position", position);
     if (image) {
-      newUser.append('image', image, email)
+      newUser.append("image", image, email);
     }
-    return this.http
-      .post(BACKEND_URL + "/register", newUser);
+    return this.http.post(BACKEND_URL + "/register", newUser);
   }
 
   loginUser(email: string, password: string) {
@@ -141,24 +140,4 @@ export class AuthService {
       user: user
     };
   }
-
-  changePass(email: string, oldPass: string, newPass: string) {
-    return this.http.post<{ message: string }>(BACKEND_URL + "/updatePass", {
-      email: email,
-      oldPass: oldPass,
-      newPass: newPass
-    });
-  }
-
-  changeImage(id: string, image: File) {
-    const newUserImage = new FormData();
-    newUserImage.append('id', id);
-    newUserImage.append('image', image, id);
-    return this.http.patch(BACKEND_URL + "/updateImage", newUserImage);
-  }
-
-  getUsersExcept(id: string) {
-    return this.http.post(BACKEND_URL + '/getUsers', { id: id })
-  }
-
 }

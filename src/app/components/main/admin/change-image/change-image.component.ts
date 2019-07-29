@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
+import { UserService } from './../../../../services/user.service';
+
 @Component({
   selector: "app-change-image",
   templateUrl: "./change-image.component.html",
@@ -12,7 +14,10 @@ export class ChangeImageComponent implements OnInit {
   imagePreview;
   user: User;
   imageFormControl = new FormControl(null, [Validators.required]);
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.user = this.authService.getUser();
@@ -31,10 +36,13 @@ export class ChangeImageComponent implements OnInit {
 
   sendNewImage() {
     const file = this.imageFormControl.value.image;
-    this.authService.changeImage(this.user._id, file).subscribe(res => {
-      this.authService.logout();
-    }, err => {
-      console.log(err)
-    });
+    this.userService.changeImage(this.user._id, file).subscribe(
+      res => {
+        this.authService.logout();
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }
