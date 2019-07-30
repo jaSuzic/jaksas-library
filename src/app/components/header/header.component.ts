@@ -18,11 +18,15 @@ export class HeaderComponent implements OnInit {
   position: string = "test";
   user: User;
 
-  constructor(public dialog: MatDialog, private authService: AuthService, private router: Router) { }
+  constructor(
+    public dialog: MatDialog,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.user = this.authService.getUser();
-    console.log(this.user)
+    console.log(this.user);
   }
 
   addNewBook() {
@@ -57,9 +61,5 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-  }
-
-  adminPane() {
-    this.router.navigate(['/admin'])
   }
 }

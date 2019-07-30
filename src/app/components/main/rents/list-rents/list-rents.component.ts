@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS, MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { ReturnDateComponent } from 'src/app/components/modals/return-date/return-date.component';
 import { scrollToTop } from 'src/app/helpers/helpers-function';
 import { RentService } from 'src/app/services/rent.service';
 
@@ -25,6 +26,7 @@ export class ListRentsComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   selectedRent;
 
+  @Input() onlyActive: boolean;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -35,23 +37,47 @@ export class ListRentsComponent implements OnInit {
   }
 
   callSearch() {
-    this.rentService.getRents().subscribe(res => {
-      let rents = res.rents.map(rent => {
-        return {
-          name: rent.memberId.name,
-          lastName: rent.memberId.lastName,
-          memberId: rent.memberId._id,
-          book: rent.bookId.title,
-          author: rent.bookId.author,
-          bookId: rent.bookId._id,
-          rentDate: rent.rentDate,
-          _id: rent._id
-        };
+    if (!this.onlyActive) {
+      this.rentService.getRents().subscribe(res => {
+        let rents = res.rents.map(rent => {
+          return {
+            fullName: rent.memberId.name + " " + rent.memberId.lastName,
+            name: rent.memberId.name,
+            lastName: rent.memberId.lastName,
+            memberId: rent.memberId._id,
+            book: rent.bookId.title,
+            author: rent.bookId.author,
+            bookId: rent.bookId._id,
+            rentDate: rent.rentDate,
+            returnDate: rent.returnDate,
+            _id: rent._id
+          };
+        });
+        this.dataSource = new MatTableDataSource(rents);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
-      this.dataSource = new MatTableDataSource(rents);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+    } else {
+      this.rentService.getActiveRents().subscribe(res => {
+        let rents = res.rents.map(rent => {
+          return {
+            fullName: rent.memberId.name + " " + rent.memberId.lastName,
+            name: rent.memberId.name,
+            lastName: rent.memberId.lastName,
+            memberId: rent.memberId._id,
+            book: rent.bookId.title,
+            author: rent.bookId.author,
+            bookId: rent.bookId._id,
+            rentDate: rent.rentDate,
+            returnDate: rent.returnDate,
+            _id: rent._id
+          };
+        });
+        this.dataSource = new MatTableDataSource(rents);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+    }
   }
 
   applyFilter(filterValue: string) {
@@ -80,5 +106,19 @@ export class ListRentsComponent implements OnInit {
         this.selectedRent = undefined;
         this.callSearch();
       });
+  }
+
+  returnBook(row) {
+    const dialogRef = this.dialog.open(ReturnDateComponent, {
+      data: {
+        id: row._id,
+        rentDate: row.rentDate
+      },
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+    });
   }
 }

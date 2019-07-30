@@ -19,6 +19,7 @@ import { LoginComponent } from './components/main/login/login.component';
 import { MembersComponent } from './components/main/members/members.component';
 import { BooksSelectComponent } from './components/main/rents/books-select/books-select.component';
 import { EditRentComponent } from './components/main/rents/edit-rent/edit-rent.component';
+import { ListActiveRentsComponent } from './components/main/rents/list-active-rents/list-active-rents.component';
 import { ListRentsComponent } from './components/main/rents/list-rents/list-rents.component';
 import { MembersSelectComponent } from './components/main/rents/members-select/members-select.component';
 import { NewRentComponent } from './components/main/rents/new-rent/new-rent.component';
@@ -26,6 +27,7 @@ import { AddEditComponent } from './components/modals/add-edit-book/add-edit.com
 import { AddEditMemberComponent } from './components/modals/add-edit-member/add-edit-member.component';
 import { ConfirmationModalComponent } from './components/modals/confirmation-modal/confirmation-modal.component';
 import { EditUserComponent } from './components/modals/edit-user/edit-user.component';
+import { ReturnDateComponent } from './components/modals/return-date/return-date.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AuthInterceptor } from './helpers/auth-interceptor';
 import { MaterialModule } from './material.module';
@@ -51,7 +53,9 @@ import { MaterialModule } from './material.module';
     RegisterUserComponent,
     ListUsersComponent,
     AdminPanelComponent,
-    EditUserComponent
+    EditUserComponent,
+    ListActiveRentsComponent,
+    ReturnDateComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,8 @@ import { MaterialModule } from './material.module';
     AddEditMemberComponent,
     MembersSelectComponent,
     BooksSelectComponent,
-    EditUserComponent
+    EditUserComponent,
+    ReturnDateComponent
   ],
   providers: [
     MatDatepickerModule,
@@ -76,4 +81,4 @@ import { MaterialModule } from './material.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

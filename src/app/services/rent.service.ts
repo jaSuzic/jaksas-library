@@ -21,6 +21,12 @@ export class RentService {
     );
   }
 
+  getActiveRents() {
+    return this.http.get<{ message: string; rents: any[]; count: number }>(
+      BACKEND_URL + "/active"
+    );
+  }
+
   saveRent(idMember: string, idBook: string, rentDate: Date) {
     const newRent = {
       idMember: idMember,
@@ -56,5 +62,12 @@ export class RentService {
 
   getRentStatus() {
     return this.rentStatus.asObservable();
+  }
+
+  returnBook(id: string, returnDate: Date) {
+    return this.http.patch(BACKEND_URL + "/returnBook", {
+      id: id,
+      returnDate: returnDate
+    });
   }
 }
