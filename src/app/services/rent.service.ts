@@ -70,4 +70,8 @@ export class RentService {
       returnDate: returnDate
     });
   }
+
+  getRentHistory(memberId: string) {
+    return this.http.post(BACKEND_URL + "/history", { memberId: memberId });
+  }
 }

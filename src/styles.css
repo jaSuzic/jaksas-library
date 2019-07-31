@@ -11,7 +11,11 @@
 /* First breakpoint */
 @media only screen and (min-width: 700px) {}
 
-@media only screen and (min-width: 1100px) {}
+@media only screen and (min-width: 1285px) {
+  .long-text {
+    line-height: inherit !important;
+  }
+}
 
 @media only screen and (min-width: 1475px) {
   .long-text {

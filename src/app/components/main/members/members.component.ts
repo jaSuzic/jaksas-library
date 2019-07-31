@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { RentService } from 'src/app/services/rent.service';
 
 import { AddEditMemberComponent } from '../../modals/add-edit-member/add-edit-member.component';
 import { MemberService } from './../../../services/member.service';
+import { RentHistoryComponent } from './../../modals/rent-history/rent-history.component';
 
 @Component({
   selector: "app-members",
@@ -22,7 +24,11 @@ export class MembersComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private memberService: MemberService, public dialog: MatDialog) {}
+  constructor(
+    private memberService: MemberService,
+    public dialog: MatDialog,
+    private rentService: RentService
+  ) {}
 
   ngOnInit() {
     this.callSearch();
@@ -57,7 +63,12 @@ export class MembersComponent implements OnInit {
   }
 
   rentHistory(row) {
-    console.log(row);
+    const dialogRef = this.dialog.open(RentHistoryComponent, {
+      data: {
+        id: row._id,
+        fullName: row.name + " " + row.lastName
+      }
+    });
   }
 
   editMember(row) {

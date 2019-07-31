@@ -27,6 +27,7 @@ import { AddEditComponent } from './components/modals/add-edit-book/add-edit.com
 import { AddEditMemberComponent } from './components/modals/add-edit-member/add-edit-member.component';
 import { ConfirmationModalComponent } from './components/modals/confirmation-modal/confirmation-modal.component';
 import { EditUserComponent } from './components/modals/edit-user/edit-user.component';
+import { RentHistoryComponent } from './components/modals/rent-history/rent-history.component';
 import { ReturnDateComponent } from './components/modals/return-date/return-date.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AuthInterceptor } from './helpers/auth-interceptor';
@@ -55,7 +56,8 @@ import { MaterialModule } from './material.module';
     AdminPanelComponent,
     EditUserComponent,
     ListActiveRentsComponent,
-    ReturnDateComponent
+    ReturnDateComponent,
+    RentHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import { MaterialModule } from './material.module';
     MembersSelectComponent,
     BooksSelectComponent,
     EditUserComponent,
-    ReturnDateComponent
+    ReturnDateComponent,
+    RentHistoryComponent
   ],
   providers: [
     MatDatepickerModule,
