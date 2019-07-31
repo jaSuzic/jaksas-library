@@ -32,6 +32,8 @@ import { ReturnDateComponent } from './components/modals/return-date/return-date
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AuthInterceptor } from './helpers/auth-interceptor';
 import { MaterialModule } from './material.module';
+import { FirstPageComponent } from './components/main/first-page/first-page.component';
+import { NotFoundComponent } from './components/main/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { MaterialModule } from './material.module';
     EditUserComponent,
     ListActiveRentsComponent,
     ReturnDateComponent,
-    RentHistoryComponent
+    RentHistoryComponent,
+    FirstPageComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

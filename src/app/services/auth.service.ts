@@ -56,7 +56,7 @@ export class AuthService {
           this.tokenTimer = setTimeout(() => {
             this.logout();
           }, expiresInDuration * 1000);
-          this.tokenStatus.next([]);
+          this.tokenStatus.next([this.token]);
           this.isAuth = true;
           this.user = response.user;
           const now = new Date();
