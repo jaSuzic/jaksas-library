@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AdminPanelComponent } from './components/main/admin/admin-panel/admin-panel.component';
 import { ListComponent } from './components/main/books/list/list.component';
-import { FirstPageComponent } from './components/main/first-page/first-page.component';
 import { LoginComponent } from './components/main/login/login.component';
 import { MembersComponent } from './components/main/members/members.component';
 import { NotFoundComponent } from './components/main/not-found/not-found.component';
@@ -15,11 +14,10 @@ import { AuthGuard } from './helpers/auth.guard';
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/home",
+    redirectTo: "new-rent",
     canActivate: [AuthGuard],
     pathMatch: "full"
   },
-  { path: "home", component: FirstPageComponent, canActivate: [AuthGuard] },
   { path: "books", component: ListComponent, canActivate: [AuthGuard] },
   { path: "members", component: MembersComponent, canActivate: [AuthGuard] },
   { path: "new-rent", component: NewRentComponent, canActivate: [AuthGuard] },

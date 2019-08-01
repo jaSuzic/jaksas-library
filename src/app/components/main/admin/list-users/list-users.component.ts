@@ -47,6 +47,7 @@ export class ListUsersComponent implements OnInit {
 
   editMember(row) {
     const dialogRef = this.dialog.open(EditUserComponent, {
+      width: "550px",
       data: {
         edit: true,
         firstName: row.firstName,

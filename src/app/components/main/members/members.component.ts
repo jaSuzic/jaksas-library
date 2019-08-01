@@ -73,6 +73,7 @@ export class MembersComponent implements OnInit {
 
   editMember(row) {
     const dialogRef = this.dialog.open(AddEditMemberComponent, {
+      width: "350px",
       data: {
         edit: true,
         firstName: row.name,

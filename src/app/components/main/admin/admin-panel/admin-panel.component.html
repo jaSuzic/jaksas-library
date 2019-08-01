@@ -5,9 +5,9 @@
 
     <app-change-image></app-change-image>
 
-    <app-register-user *ngIf='user.position === ("admin" || "super-admin")'></app-register-user>
+    <app-register-user *ngIf='user.position === "admin" || user.position === "super-admin"'></app-register-user>
 
-    <app-list-users *ngIf='user.position === ("admin" || "super-admin")'></app-list-users>
+    <app-list-users *ngIf='user.position === "admin" || user.position === "super-admin"'></app-list-users>
   </mat-card-content>
 
 

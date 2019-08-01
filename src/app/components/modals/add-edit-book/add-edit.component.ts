@@ -41,6 +41,7 @@ export class AddEditComponent implements OnInit {
           year: this.data.year,
           image: this.data.image ? this.data.image : null
         });
+        this.imagePreview = this.form.value.image;
       }
     }
   }

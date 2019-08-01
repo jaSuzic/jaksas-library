@@ -87,6 +87,7 @@ export class ListComponent implements OnInit {
 
   editBook(book) {
     const dialogRef = this.dialog.open(AddEditComponent, {
+      width: "550px",
       data: {
         edit: true,
         title: book.title,

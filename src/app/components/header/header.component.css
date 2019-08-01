@@ -1,5 +1,5 @@
 .logo {
-  margin: .5rem 1rem auto;
+  margin: 0 1rem 0 0 auto;
   display: block;
   flex: 1;
 }
@@ -15,7 +15,7 @@
 
 mat-toolbar-row {
   height: auto !important;
-  display: flex;
+  padding: 0;
 }
 
 .personal-image {
@@ -37,6 +37,7 @@ mat-card {
 
 .small-font {
   font-size: .75em;
+  color: azure;
 }
 
 mat-form-field {

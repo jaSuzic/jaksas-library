@@ -17,6 +17,7 @@ import { RegisterUserComponent } from './components/main/admin/register-user/reg
 import { ListComponent } from './components/main/books/list/list.component';
 import { LoginComponent } from './components/main/login/login.component';
 import { MembersComponent } from './components/main/members/members.component';
+import { NotFoundComponent } from './components/main/not-found/not-found.component';
 import { BooksSelectComponent } from './components/main/rents/books-select/books-select.component';
 import { EditRentComponent } from './components/main/rents/edit-rent/edit-rent.component';
 import { ListActiveRentsComponent } from './components/main/rents/list-active-rents/list-active-rents.component';
@@ -32,8 +33,6 @@ import { ReturnDateComponent } from './components/modals/return-date/return-date
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AuthInterceptor } from './helpers/auth-interceptor';
 import { MaterialModule } from './material.module';
-import { FirstPageComponent } from './components/main/first-page/first-page.component';
-import { NotFoundComponent } from './components/main/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +59,6 @@ import { NotFoundComponent } from './components/main/not-found/not-found.compone
     ListActiveRentsComponent,
     ReturnDateComponent,
     RentHistoryComponent,
-    FirstPageComponent,
     NotFoundComponent
   ],
   imports: [

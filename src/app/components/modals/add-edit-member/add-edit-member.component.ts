@@ -68,7 +68,7 @@ export class AddEditMemberComponent implements OnInit {
   delete() {
     // this.memberService.deleteMember(this.data.id);
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
-      width: "200px",
+      width: "300px",
       data: "Are you sure you want to remove this member???"
     });
     dialogRef.afterClosed().subscribe(result => {

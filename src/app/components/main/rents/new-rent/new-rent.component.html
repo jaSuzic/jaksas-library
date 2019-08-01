@@ -2,22 +2,17 @@
   <mat-step [stepControl]="memberForm">
     <!-- FIRST STEP -->
     <ng-template matStepLabel>Select member</ng-template>
-    Evo ga: {{ chosenMember?.firstName }}
     <mat-card *ngIf="chosenMember" class="text-center">
       <p>
         You selected member:
-        <strong
-          >{{ chosenMember.firstName }} {{ chosenMember.lastName }}</strong
-        >
+        <strong>{{ chosenMember.firstName }} {{ chosenMember.lastName }}</strong>
         with date of birth: {{ chosenMember.birthDate | date: "dd/MM/yy" }}.
       </p>
       <button mat-button matStepperNext [disabled]="!chosenMember">
         Go to next step<mat-icon>arrow_forward</mat-icon>
       </button>
     </mat-card>
-    <app-members-select
-      (selectedMember)="choseMember($event)"
-    ></app-members-select>
+    <app-members-select (selectedMember)="choseMember($event)"></app-members-select>
   </mat-step>
   <mat-step [stepControl]="bookForm">
     <!-- SECOND step -->
@@ -54,13 +49,7 @@
     <mat-card class="col-6 text-center mx-auto mt-2">
       Please chose date or leave todays: <br /><br />
       <mat-form-field (click)="picker.open()">
-        <input
-          matInput
-          [matDatepicker]="picker"
-          placeholder="Choose a date"
-          [(ngModel)]="chosenDate"
-          readonly
-        />
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="chosenDate" readonly />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker disabled="false"></mat-datepicker>
       </mat-form-field>
