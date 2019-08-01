@@ -44,4 +44,23 @@ export class UserService {
   getUserStatus() {
     return this.userStatus.asObservable();
   }
+
+  updateUser(
+    id: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    position: string,
+    image: File
+  ) {
+    const newUser = {
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      position: position,
+      image: image
+    };
+    return this.http.put(BACKEND_URL + "/updateUser", newUser);
+  }
 }

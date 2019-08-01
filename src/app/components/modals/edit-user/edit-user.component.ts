@@ -78,5 +78,23 @@ export class EditUserComponent implements OnInit {
     });
   }
 
-  save() {}
+  save() {
+    const id = this.data.id;
+    const firstName = this.form.value.firstName;
+    const lastName = this.form.value.lastName;
+    const email = this.form.value.email;
+    const position = this.form.value.position;
+    const image = this.form.value.image ? this.form.value.image.image : null;
+    this.userService
+      .updateUser(id, firstName, lastName, email, position, image)
+      .subscribe(
+        res => {
+          this.userService.usersUpdated();
+          this.dialogRef.close();
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  }
 }
