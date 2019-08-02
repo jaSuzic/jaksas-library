@@ -1,0 +1,15 @@
+.close-icon {
+  font-size: x-large;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.close-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+
+.spacer {
+  flex: 1 auto;
+}

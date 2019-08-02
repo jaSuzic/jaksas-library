@@ -11,7 +11,7 @@
 
     <mat-sidenav-content class="full-screen-height">
       <div class="col-9 mx-auto">
-        <button mat-button (click)="sidenav.toggle()" *ngIf="isAuth">
+        <button mat-button class='menu-btn' (click)="sidenav.toggle()" *ngIf="isAuth">
           <mat-icon>menu</mat-icon>
         </button>
         <router-outlet></router-outlet>

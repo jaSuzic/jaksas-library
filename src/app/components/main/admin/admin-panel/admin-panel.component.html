@@ -1,13 +1,20 @@
 <mat-card>
   <mat-card-title>Admin panel</mat-card-title>
   <mat-card-content>
-    <app-change-pass></app-change-pass>
-
-    <app-change-image></app-change-image>
-
-    <app-register-user *ngIf='user.position === "admin" || user.position === "super-admin"'></app-register-user>
-
-    <app-list-users *ngIf='user.position === "admin" || user.position === "super-admin"'></app-list-users>
+    <div class="mt-2">
+      <app-change-pass></app-change-pass>
+    </div>
+    <div class="mt-2">
+      <app-change-image></app-change-image>
+    </div>
+    <div class="mt-2">
+      <app-register-user *ngIf='user.position === "admin" || user.position === "super-admin"'>
+      </app-register-user>
+    </div>
+    <div class="mt-2">
+      <app-list-users *ngIf='user.position === "admin" || user.position === "super-admin"'>
+      </app-list-users>
+    </div>
   </mat-card-content>
 
 

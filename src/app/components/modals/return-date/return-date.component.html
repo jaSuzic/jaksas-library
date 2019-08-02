@@ -10,8 +10,8 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)='returnBook()'>Save</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]>Cancel</button>
-  </mat-card-actions>
+  <div class='d-flex justify-content-around'>
+    <button mat-button color="primary" (click)='returnBook()'>Save</button>
+    <button mat-button color="primary" [mat-dialog-close]>Cancel</button>
+  </div>
 </mat-card>

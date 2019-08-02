@@ -12,26 +12,26 @@
     <form [formGroup]='passGroup'>
       <p>After saving change you'll have to login again.</p>
 
-      <mat-form-field>
+      <mat-form-field class="col-sm-12 col-md-6 col-xl-4">
         <input matInput placeholder="Current password" formControlName='oldPass'>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="col-sm-12 col-md-6 col-xl-4">
         <input matInput placeholder="New password" formControlName='newPass'>
         <mat-error *ngIf="passGroup.get('newPass').hasError('notSame')">
           This two fields must be same
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="col-sm-12 col-md-6 col-xl-4">
         <input matInput placeholder="Confirm new password" formControlName='confirmPass'>
         <mat-error *ngIf="passGroup.get('confirmPass').hasError('notSame')">
           This two fields must be same
         </mat-error>
       </mat-form-field>
-
-      <button mat-raised-button [disabled]='!passGroup.valid' (click)='sendNewPass()'>Save password</button>
-      {{passGroup.valid}}
+      <br>
+      <button mat-raised-button class='save-btn' [disabled]='!passGroup.valid' (click)='sendNewPass()'>Save
+        password</button>
     </form>
   </mat-expansion-panel>
 </mat-accordion>

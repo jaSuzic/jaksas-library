@@ -26,4 +26,8 @@ export class RentHistoryComponent implements OnInit {
       }
     );
   }
+
+  close() {
+    this.dialogRef.close();
+  }
 }
