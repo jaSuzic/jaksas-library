@@ -11,6 +11,7 @@ import {
   MatInputModule,
   MatNativeDateModule,
   MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule,
   MatSortModule,
@@ -38,7 +39,8 @@ import {
     MatNativeDateModule,
     MatSidenavModule,
     MatStepperModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule {}
