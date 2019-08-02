@@ -1,7 +1,11 @@
-.primary-background{
+.primary-background {
   background: #3f51b5;
 }
 
-.full-screen-height{
+.full-screen-height {
   min-height: calc(100vh - 150px);
+}
+
+button:focus {
+  outline: none;
 }
