@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,7 +12,7 @@ import { EditUserComponent } from './../../../modals/edit-user/edit-user.compone
   templateUrl: "./list-users.component.html",
   styleUrls: ["./list-users.component.css"]
 })
-export class ListUsersComponent implements OnInit {
+export class ListUsersComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = [
     "firstName",
     "lastName",
@@ -21,6 +22,8 @@ export class ListUsersComponent implements OnInit {
   ];
   dataSource: MatTableDataSource<any>;
   user: User;
+  isLoading = false;
+  sub: Subscription;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -33,12 +36,18 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.getUser();
-    this.callSearch();
+    // this.callSearch();
+    this.sub = this.userService.getUserStatus().subscribe(res => {
+      if (res) {
+        this.callSearch();
+      }
+    });
   }
 
   callSearch() {
+    this.isLoading = true;
     this.userService.getUsersExcept(this.user._id).subscribe((res: User[]) => {
-      console.log(res);
+      this.isLoading = false;
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -59,10 +68,6 @@ export class ListUsersComponent implements OnInit {
       },
       disableClose: true
     });
-
-    dialogRef.afterClosed().subscribe(res => {
-      console.log(res);
-    });
   }
 
   applyFilter(filterValue: string) {
@@ -71,5 +76,9 @@ export class ListUsersComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

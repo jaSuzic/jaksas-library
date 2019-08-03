@@ -15,19 +15,36 @@
           </div>
 
           <div class="personal-data col-10">
-            <form>
+            <form class="col-12">
               <div class="d-flex">
                 <mat-form-field class="col-4">
                   <mat-label class="small-font">First name:</mat-label>
-                  <input matInput type="text" disabled [(ngModel)]="user.firstName" name="name" />
+                  <input
+                    matInput
+                    type="text"
+                    disabled
+                    [(ngModel)]="user.firstName"
+                    name="name"
+                  />
                 </mat-form-field>
                 <mat-form-field class="col-4">
                   <mat-label class="small-font">Last name:</mat-label>
-                  <input matInput type="text" disabled [(ngModel)]="user.lastName" name="lastName" />
+                  <input
+                    matInput
+                    type="text"
+                    disabled
+                    [(ngModel)]="user.lastName"
+                    name="lastName"
+                  />
                 </mat-form-field>
                 <mat-form-field class="col-4">
                   <mat-label class="small-font">Position:</mat-label>
-                  <input matInput disabled [(ngModel)]="user.position" name="position" />
+                  <input
+                    matInput
+                    disabled
+                    [(ngModel)]="user.position"
+                    name="position"
+                  />
                 </mat-form-field>
               </div>
             </form>
@@ -61,6 +78,5 @@
         </button>
       </div>
     </div>
-    <span class="spacer"></span>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -20,6 +20,7 @@ export class MembersComponent implements OnInit {
     "btnEdit"
   ];
   dataSource: MatTableDataSource<any>;
+  isLoading = false;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -31,7 +32,7 @@ export class MembersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.callSearch();
+    // this.callSearch();
 
     this.memberService.getMembersStatus().subscribe(res => {
       if (res) this.callSearch();
@@ -39,6 +40,7 @@ export class MembersComponent implements OnInit {
   }
 
   callSearch() {
+    this.isLoading = true;
     this.memberService.getMembers().subscribe(res => {
       let members = res.members.map(member => {
         return {
@@ -48,6 +50,7 @@ export class MembersComponent implements OnInit {
           birthDate: member.birthDate
         };
       });
+      this.isLoading = false;
       this.dataSource = new MatTableDataSource(members);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -64,6 +67,7 @@ export class MembersComponent implements OnInit {
 
   rentHistory(row) {
     const dialogRef = this.dialog.open(RentHistoryComponent, {
+      width: "550px",
       data: {
         id: row._id,
         fullName: row.name + " " + row.lastName
@@ -82,10 +86,6 @@ export class MembersComponent implements OnInit {
         id: row._id
       },
       disableClose: true
-    });
-
-    dialogRef.afterClosed().subscribe(res => {
-      console.log(res);
     });
   }
 }

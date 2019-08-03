@@ -1,25 +1,28 @@
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Change image
-      </mat-panel-title>
-      <mat-panel-description>
-        Click here if you want to change your picture
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>After saving change you'll have to login again.</p>
-    <div class='image-preview padding-btn' *ngIf='imagePreview!=="" && imagePreview'>
-      <img [src]='imagePreview' alt='Image preview'>
-    </div>
+<p>After saving change you'll have to login again.</p>
+<div
+  class="image-preview padding-btn"
+  *ngIf="imagePreview !== '' && imagePreview"
+>
+  <img [src]="imagePreview" alt="Image preview" />
+</div>
 
-    <div class='padding-btn'>
-      <button mat-stroked-button type='button' (click)='filePicker.click()'>Pick image</button>
-      <input type="file" #filePicker accept="image/*" (change)="onImageChange($event)">
-    </div>
+<div class="padding-btn">
+  <button mat-stroked-button type="button" (click)="filePicker.click()">
+    Pick image
+  </button>
+  <input
+    type="file"
+    #filePicker
+    accept="image/*"
+    (change)="onImageChange($event)"
+  />
+</div>
 
-    <button mat-raised-button class='mt-2 padding-btn' [disabled]='imageFormControl.invalid'
-      (click)='sendNewImage()'>Save
-      changes</button>
-  </mat-expansion-panel>
-</mat-accordion>
+<button
+  mat-raised-button
+  class="mt-2 padding-btn"
+  [disabled]="imageFormControl.invalid"
+  (click)="sendNewImage()"
+>
+  Save changes
+</button>

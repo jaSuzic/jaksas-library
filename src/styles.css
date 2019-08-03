@@ -8,6 +8,22 @@
   line-height: normal !important;
 }
 
+mat-spinner{
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.warning-snackbar {
+  background-color: rgba(242, 38, 19, .85);
+  color: whitesmoke;
+}
+
+.correct-snackbar {
+  background-color: rgba(46, 204, 113, .85);
+  color: whitesmoke;
+}
+
 /* First breakpoint */
 @media only screen and (min-width: 700px) {}
 

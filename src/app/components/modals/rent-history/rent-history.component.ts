@@ -9,6 +9,8 @@ import { RentService } from 'src/app/services/rent.service';
 })
 export class RentHistoryComponent implements OnInit {
   rents;
+  isLoading = false;
+
   constructor(
     public dialogRef: MatDialogRef<RentHistoryComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -17,8 +19,10 @@ export class RentHistoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.rentService.getRentHistory(this.data.id).subscribe(
       res => {
+        this.isLoading = false;
         this.rents = res["rents"];
       },
       err => {

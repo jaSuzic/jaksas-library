@@ -20,26 +20,6 @@ export class AuthService {
   private user: User;
   constructor(private http: HttpClient, private router: Router) {}
 
-  createUser(
-    email: string,
-    password: string,
-    firstName: string,
-    lastName: string,
-    position: string,
-    image?: File
-  ) {
-    const newUser = new FormData();
-    newUser.append("email", email);
-    newUser.append("password", password);
-    newUser.append("firstName", firstName);
-    newUser.append("lastName", lastName);
-    newUser.append("position", position);
-    if (image) {
-      newUser.append("image", image, email);
-    }
-    return this.http.post(BACKEND_URL + "/register", newUser);
-  }
-
   loginUser(email: string, password: string) {
     this.http
       .post<{ token: string; message: string; expiresIn: number; user: User }>(

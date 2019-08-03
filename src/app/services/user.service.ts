@@ -53,14 +53,34 @@ export class UserService {
     position: string,
     image: File
   ) {
-    const newUser = {
-      id: id,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      position: position,
-      image: image
-    };
+    const newUser = new FormData();
+
+    newUser.append("id", id);
+    newUser.append("firstName", firstName);
+    newUser.append("lastName", lastName);
+    newUser.append("email", email);
+    newUser.append("position", position);
+    newUser.append("image", image);
     return this.http.put(BACKEND_URL + "/updateUser", newUser);
+  }
+
+  createUser(
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    position: string,
+    image?: File
+  ) {
+    const newUser = new FormData();
+    newUser.append("email", email);
+    newUser.append("password", password);
+    newUser.append("firstName", firstName);
+    newUser.append("lastName", lastName);
+    newUser.append("position", position);
+    if (image) {
+      newUser.append("image", image, email);
+    }
+    return this.http.post(BACKEND_URL + "/register", newUser);
   }
 }

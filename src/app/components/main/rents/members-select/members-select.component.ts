@@ -16,6 +16,7 @@ export class MembersSelectComponent implements OnInit {
     "btnSelect"
   ];
   dataSourceMember: MatTableDataSource<any>;
+  isLoading = false;
 
   @Output() selectedMember = new EventEmitter<Member>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -24,6 +25,7 @@ export class MembersSelectComponent implements OnInit {
   constructor(private memberService: MemberService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.memberService.getMembers().subscribe(res => {
       let members = res.members.map(member => {
         return {
@@ -33,6 +35,7 @@ export class MembersSelectComponent implements OnInit {
           birthDate: member.birthDate
         };
       });
+      this.isLoading = false;
       this.dataSourceMember = new MatTableDataSource(members);
       this.dataSourceMember.paginator = this.paginator;
       this.dataSourceMember.sort = this.sort;

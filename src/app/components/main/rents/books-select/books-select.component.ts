@@ -12,6 +12,7 @@ import { BookService } from './../../../../services/book.service';
 export class BooksSelectComponent implements OnInit {
   displayedColumns: string[] = ["title", "author", "year", "btnSelect"];
   dataSourceBook: MatTableDataSource<Book>;
+  isLoading = false;
 
   @Output() selectedBook = new EventEmitter<Book>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

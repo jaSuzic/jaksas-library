@@ -25,6 +25,7 @@ export class ListRentsComponent implements OnInit {
   ];
   dataSource: MatTableDataSource<any>;
   selectedRent;
+  isLoading = false;
 
   @Input() onlyActive: boolean;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -38,6 +39,7 @@ export class ListRentsComponent implements OnInit {
 
   callSearch() {
     if (!this.onlyActive) {
+      this.isLoading = true;
       this.rentService.getRents().subscribe(res => {
         let rents = res.rents.map(rent => {
           return {
@@ -53,11 +55,13 @@ export class ListRentsComponent implements OnInit {
             _id: rent._id
           };
         });
+        this.isLoading = false;
         this.dataSource = new MatTableDataSource(rents);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
     } else {
+      this.isLoading = true;
       this.rentService.getActiveRents().subscribe(res => {
         let rents = res.rents.map(rent => {
           return {
@@ -73,6 +77,7 @@ export class ListRentsComponent implements OnInit {
             _id: rent._id
           };
         });
+        this.isLoading = false;
         this.dataSource = new MatTableDataSource(rents);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
+import { UserService } from './../../../../services/user.service';
+
 @Component({
-  selector: 'app-register-user',
-  templateUrl: './register-user.component.html',
-  styleUrls: ['./register-user.component.css']
+  selector: "app-register-user",
+  templateUrl: "./register-user.component.html",
+  styleUrls: ["./register-user.component.css"]
 })
 export class RegisterUserComponent implements OnInit {
-
   userGroup: FormGroup;
   imagePreview;
   user: User;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.user = this.authService.getUser();
@@ -24,14 +30,14 @@ export class RegisterUserComponent implements OnInit {
       email: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
       position: new FormControl(null, Validators.required),
-      image: new FormControl(null),
-    })
+      image: new FormControl(null)
+    });
   }
 
   onImageChange(e: Event) {
     const file = (event.target as HTMLInputElement).files[0];
-    this.userGroup.get('image').patchValue({ image: file });
-    this.userGroup.get('image').updateValueAndValidity();
+    this.userGroup.get("image").patchValue({ image: file });
+    this.userGroup.get("image").updateValueAndValidity();
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string;
@@ -45,15 +51,26 @@ export class RegisterUserComponent implements OnInit {
     const firstName = this.userGroup.value.firstName;
     const lastName = this.userGroup.value.lastName;
     const position = this.userGroup.value.position;
-    const image = this.userGroup.value.image ? this.userGroup.value.image.image : null;
-    this.authService.createUser(email, password, firstName, lastName, position, image).subscribe(
-      res => {
-        console.log(res)
-      },
-      err => {
-        console.log(err)
-      }
-    )
+    const image = this.userGroup.value.image
+      ? this.userGroup.value.image.image
+      : null;
+    this.userService
+      .createUser(email, password, firstName, lastName, position, image)
+      .subscribe(
+        res => {
+          this.snackBar.open("User created", null, {
+            duration: 5000,
+            panelClass: ["correct-snackbar"]
+          });
+          this.userService.usersUpdated();
+        },
+        err => {
+          console.log("Error: ", err);
+          this.snackBar.open("There was error: " + err.message, null, {
+            duration: 8000,
+            panelClass: ["warning-snackbar"]
+          });
+        }
+      );
   }
-
 }

@@ -25,11 +25,12 @@ export class ListComponent implements OnInit {
   pageSize: number = 10;
   pageIndex: number = 0;
   pageSizeOptions: number[] = [2, 5, 10, 20, 50];
+  isLoading = false;
 
   constructor(private bookService: BookService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.callSearch();
+    // this.callSearch();
 
     this.bookService.getBooksStatus().subscribe(res => {
       if (res) this.callSearch();
@@ -55,6 +56,7 @@ export class ListComponent implements OnInit {
   }
 
   callSearch(params?: { key: string; value: string }) {
+    this.isLoading = true;
     let paramsForSending: string = "";
     if (params) {
       paramsForSending = params.key + "=" + params.value;
@@ -62,6 +64,7 @@ export class ListComponent implements OnInit {
     this.bookService
       .getBooks(this.sortBy, this.pageSize, this.pageIndex, paramsForSending)
       .subscribe(res => {
+        this.isLoading = false;
         this.books = res.books;
         this.length = res.count;
       });
@@ -83,8 +86,6 @@ export class ListComponent implements OnInit {
     this.sortBy = e.value;
   }
 
-  rentBook(book) {}
-
   editBook(book) {
     const dialogRef = this.dialog.open(AddEditComponent, {
       width: "550px",
@@ -98,16 +99,10 @@ export class ListComponent implements OnInit {
       },
       disableClose: true
     });
-
-    dialogRef.afterClosed().subscribe(res => {
-      console.log(res);
-    });
   }
   changePagination(e) {
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
-    //pageIndex - broj strane
-    //pageSize - koliko po strani
     if (this.titleSearch) {
       this.titleValueChange();
     } else if (this.authorSearch) {

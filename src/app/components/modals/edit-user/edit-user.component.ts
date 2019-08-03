@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { User } from 'src/app/models/user.model';
 
 import { AuthService } from './../../../services/auth.service';
@@ -22,7 +22,8 @@ export class EditUserComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -63,15 +64,23 @@ export class EditUserComponent implements OnInit {
       width: "200px",
       data: "Are you sure you want to delete this user???"
     });
-    dialogRef.afterClosed().subscribe(result => {
+    const subscription = dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.userService.deleteUser(this.data.id).subscribe(
           res => {
+            this.snackBar.open("User deleted", null, {
+              duration: 5000,
+              panelClass: ["correct-snackbar"]
+            });
             this.userService.usersUpdated();
             this.dialogRef.close();
           },
           err => {
-            console.log("NOT ok");
+            this.snackBar.open("There was error: " + err.message, null, {
+              duration: 8000,
+              panelClass: ["warning-snackbar"]
+            });
+            console.log("NOT ok", err);
           }
         );
       }
@@ -84,16 +93,25 @@ export class EditUserComponent implements OnInit {
     const lastName = this.form.value.lastName;
     const email = this.form.value.email;
     const position = this.form.value.position;
+    console.log(this.form.value.image);
     const image = this.form.value.image ? this.form.value.image.image : null;
     this.userService
       .updateUser(id, firstName, lastName, email, position, image)
       .subscribe(
         res => {
+          this.snackBar.open("User updated", null, {
+            duration: 5000,
+            panelClass: ["correct-snackbar"]
+          });
           this.userService.usersUpdated();
           this.dialogRef.close();
         },
         err => {
           console.log(err);
+          this.snackBar.open("There was error: " + err.message, null, {
+            duration: 8000,
+            panelClass: ["warning-snackbar"]
+          });
         }
       );
   }
