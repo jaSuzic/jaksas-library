@@ -1,7 +1,6 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS, MatStepper } from '@angular/material';
+import { DateAdapter, MAT_DATE_FORMATS, MatSnackBar, MatStepper } from '@angular/material';
 import { Book } from 'src/app/models/book.model';
 import { Member } from 'src/app/models/member.model';
 import { RentService } from 'src/app/services/rent.service';
@@ -26,7 +25,10 @@ export class NewRentComponent implements OnInit {
 
   @ViewChild(MatStepper, { static: false }) stepper: MatStepper;
 
-  constructor(private rentService: RentService, private location: Location) {}
+  constructor(
+    private rentService: RentService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.memberForm = new FormGroup({
@@ -51,15 +53,6 @@ export class NewRentComponent implements OnInit {
     this.bookForm.get("bookId").setValue(book._id);
   }
 
-  resetObjectValues(obj: Object) {
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        obj[key] = null;
-      }
-    }
-    return obj;
-  }
-
   saveRent() {
     let rentDate = {
       bookId: this.chosenBook._id,
@@ -74,9 +67,17 @@ export class NewRentComponent implements OnInit {
           this.chosenMember = undefined;
           this.chosenDate = new Date();
           this.stepper.reset();
+          this.snackBar.open("New rent created", null, {
+            duration: 5000,
+            panelClass: ["correct-snackbar"]
+          });
         },
         err => {
           console.log(err);
+          this.snackBar.open("There was error: " + err.message, null, {
+            duration: 8000,
+            panelClass: ["warning-snackbar"]
+          });
         }
       );
   }

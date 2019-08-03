@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { RentService } from 'src/app/services/rent.service';
 
 import { APP_DATE_FORMATS, AppDateAdapter } from './../../../helpers/format-datepicker';
@@ -14,14 +14,15 @@ import { APP_DATE_FORMATS, AppDateAdapter } from './../../../helpers/format-date
   ]
 })
 export class ReturnDateComponent implements OnInit {
-  returnDate;
+  returnDate = new Date();
   rentDate;
   id;
   constructor(
     public dialogRef: MatDialogRef<ReturnDateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
-    private rentService: RentService
+    private rentService: RentService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -32,13 +33,21 @@ export class ReturnDateComponent implements OnInit {
   }
 
   returnBook() {
-    console.log("jaksa: ", this.id, this.returnDate);
     this.rentService.returnBook(this.id, this.returnDate).subscribe(
       res => {
-        console.log(res);
+        this.rentService.rentUpdated();
+        this.snackBar.open("Book returned", null, {
+          duration: 5000,
+          panelClass: ["correct-snackbar"]
+        });
+        this.dialogRef.close();
       },
       err => {
         console.log(err);
+        this.snackBar.open("There was error: " + err.message, null, {
+          duration: 8000,
+          panelClass: ["warning-snackbar"]
+        });
       }
     );
   }

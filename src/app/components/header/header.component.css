@@ -6,6 +6,10 @@
   flex: 1;
 }
 
+.round-img{
+  border-radius: 20%;
+}
+
 .right {
   -webkit-box-flex: 2;
   -ms-flex: 2 auto;

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS, MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Subscription } from 'rxjs';
 import { ReturnDateComponent } from 'src/app/components/modals/return-date/return-date.component';
 import { scrollToTop } from 'src/app/helpers/helpers-function';
 import { RentService } from 'src/app/services/rent.service';
@@ -15,7 +16,7 @@ import { APP_DATE_FORMATS, AppDateAdapter } from './../../../../helpers/format-d
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
   ]
 })
-export class ListRentsComponent implements OnInit {
+export class ListRentsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = [
     "name",
     "book",
@@ -26,6 +27,7 @@ export class ListRentsComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   selectedRent;
   isLoading = false;
+  sub: Subscription;
 
   @Input() onlyActive: boolean;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -34,7 +36,11 @@ export class ListRentsComponent implements OnInit {
   constructor(private rentService: RentService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.callSearch();
+    this.sub = this.rentService.getRentStatus().subscribe(res => {
+      if (res) {
+        this.callSearch();
+      }
+    });
   }
 
   callSearch() {
@@ -125,5 +131,9 @@ export class ListRentsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }
