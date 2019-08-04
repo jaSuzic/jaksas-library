@@ -5,7 +5,15 @@
 
 .long-text {
   white-space: normal !important;
-  line-height: normal !important;
+  line-height: normal;
+}
+
+.mat-raised-button{
+  line-height: 20px!important;
+}
+
+.mat-raised-button::first-line{
+  line-height: 36px!important;
 }
 
 mat-spinner{
@@ -27,7 +35,7 @@ mat-spinner{
 /* First breakpoint */
 @media only screen and (min-width: 700px) {}
 
-@media only screen and (min-width: 1285px) {
+/* @media only screen and (min-width: 1285px) {
   .long-text {
     line-height: inherit !important;
   }
@@ -37,4 +45,4 @@ mat-spinner{
   .long-text {
     line-height: inherit !important;
   }
-}
+} */

@@ -9,3 +9,7 @@
 button:focus {
   outline: none;
 }
+
+.minimal {
+  min-width: 600px;
+}

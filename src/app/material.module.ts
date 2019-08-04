@@ -9,6 +9,7 @@ import {
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
+  MatMenuModule,
   MatNativeDateModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
@@ -42,7 +43,8 @@ import {
     MatStepperModule,
     MatDividerModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule {}

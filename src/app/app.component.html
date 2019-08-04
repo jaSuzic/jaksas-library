@@ -1,6 +1,6 @@
-<div class="col-12 p-0">
+<div class="col-12 p-0 minimal">
   <div class="col-12 p-0 primary-background">
-    <div class="col-9 mx-auto">
+    <div class="col-xl-9 col-md-12 mx-auto">
       <app-header *ngIf="isAuth"></app-header>
     </div>
   </div>
@@ -10,8 +10,13 @@
     </mat-sidenav>
 
     <mat-sidenav-content class="full-screen-height">
-      <div class="col-9 mx-auto">
-        <button mat-button class='menu-btn' (click)="sidenav.toggle()" *ngIf="isAuth">
+      <div class="col-xl-9 col-md-12 mx-auto">
+        <button
+          mat-button
+          class="menu-btn"
+          (click)="sidenav.toggle()"
+          *ngIf="isAuth"
+        >
           <mat-icon>menu</mat-icon>
         </button>
         <router-outlet></router-outlet>

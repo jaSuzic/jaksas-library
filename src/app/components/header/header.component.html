@@ -9,25 +9,25 @@
 
     <div class="right">
       <div>
-        <mat-card>
-          <div class="personal-image col-2">
+        <mat-card class="align-items-center">
+          <div class="personal-image">
             <img [src]="user.image" alt="image" class="round-img" />
           </div>
 
-          <div class="personal-data col-10">
-            <form class="col-12">
-              <div class="d-flex">
-                <mat-form-field class="col-4">
-                  <mat-label class="small-font">First name:</mat-label>
+          <div class="personal-data">
+            <form class="w-100">
+              <div class="form-container">
+                <mat-form-field class="input-field">
+                  <mat-label class="small-font">Name:</mat-label>
                   <input
                     matInput
                     type="text"
                     disabled
-                    [(ngModel)]="user.firstName"
+                    [value]="user.lastName + ' ' + user.firstName"
                     name="name"
                   />
                 </mat-form-field>
-                <mat-form-field class="col-4">
+                <!-- <mat-form-field class="input-field">
                   <mat-label class="small-font">Last name:</mat-label>
                   <input
                     matInput
@@ -36,13 +36,13 @@
                     [(ngModel)]="user.lastName"
                     name="lastName"
                   />
-                </mat-form-field>
-                <mat-form-field class="col-4">
+                </mat-form-field> -->
+                <mat-form-field class="input-field">
                   <mat-label class="small-font">Position:</mat-label>
                   <input
                     matInput
                     disabled
-                    [(ngModel)]="user.position"
+                    [value]="user.position"
                     name="position"
                   />
                 </mat-form-field>
@@ -52,31 +52,52 @@
         </mat-card>
       </div>
 
-      <div class="buttons col-12 d-flex justify-content-between">
-        <button class="long-text" mat-raised-button routerLink="/new-rent">
+      <div class="buttons show-buttons col-12 d-flex justify-content-between">
+        <button mat-raised-button routerLink="/new-rent">
           new rent
         </button>
         <span class="spacer"></span>
 
-        <button class="long-text" mat-raised-button routerLink="/active-rents">
+        <button mat-raised-button routerLink="/active-rents">
           return book
         </button>
         <span class="spacer"></span>
 
-        <button class="long-text" mat-raised-button (click)="addNewMember()">
+        <button mat-raised-button (click)="addNewMember()">
           new member
         </button>
         <span class="spacer"></span>
 
-        <button class="long-text" mat-raised-button (click)="addNewBook()">
+        <button mat-raised-button (click)="addNewBook()">
           new book
         </button>
         <span class="spacer"></span>
 
-        <button class="long-text" (click)="logout()" mat-raised-button>
+        <button (click)="logout()" mat-raised-button>
           Logout
         </button>
       </div>
+
+      <button mat-button [matMenuTriggerFor]="menu" class="show-menu">
+        Menu
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/new-rent">
+          new rent
+        </button>
+        <button mat-menu-item routerLink="/active-rents">
+          return book
+        </button>
+        <button mat-menu-item (click)="addNewMember()">
+          new member
+        </button>
+        <button mat-menu-item (click)="addNewBook()">
+          new book
+        </button>
+        <button mat-menu-item (click)="logout()">
+          Logout
+        </button>
+      </mat-menu>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -12,7 +12,7 @@ const BACKEND_URL = environment.apiUrl + "/books";
   providedIn: "root"
 })
 export class BookService {
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   private booksStatus = new BehaviorSubject([]);
 
@@ -42,7 +42,9 @@ export class BookService {
     newBook.append("title", title);
     newBook.append("author", author);
     newBook.append("year", year.toString());
-    newBook.append("image", image, title);
+    if (image) {
+      newBook.append("image", image, title);
+    }
     // const newBook = { title: title, author: author, year: year };
     return this.http.post<{ message: string }>(BACKEND_URL, newBook);
   }
@@ -58,12 +60,14 @@ export class BookService {
     year: number,
     image: File
   ) {
-    console.log(image)
+    console.log(image);
     const newBook = new FormData();
     newBook.append("title", title);
     newBook.append("author", author);
     newBook.append("year", year.toString());
-    newBook.append("image", image, title);
+    if (image) {
+      newBook.append("image", image, title);
+    }
     return this.http.put(BACKEND_URL + "/" + id, newBook);
   }
 
