@@ -1,11 +1,7 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div [hidden]="isLoading">
   <mat-form-field>
-    <input
-      matInput
-      (keyup)="applyFilter($event.target.value)"
-      placeholder="Filter"
-    />
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
   </mat-form-field>
 
   <div class="mat-elevation-z8">
@@ -16,18 +12,19 @@
         <td mat-cell *matCellDef="let row">{{ row.firstName }}</td>
       </ng-container>
 
+      <!-- LastName Column -->
       <ng-container matColumnDef="lastName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Last name</th>
         <td mat-cell *matCellDef="let row">{{ row.lastName }}</td>
       </ng-container>
 
-      <!-- LastName Column -->
+      <!-- Email Column -->
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
         <td mat-cell *matCellDef="let row">{{ row.email }}</td>
       </ng-container>
 
-      <!-- BirthDate Column -->
+      <!-- Position Column -->
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
         <td mat-cell *matCellDef="let row">
@@ -35,19 +32,13 @@
         </td>
       </ng-container>
 
-      <!-- Buttons Columns -->
+      <!-- Button Column -->
       <ng-container matColumnDef="btnEdit">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
-          <button
-            mat-raised-button
-            color="primary"
-            class="m-2"
-            (click)="editMember(row)"
-            *ngIf="
+          <button mat-raised-button color="primary" class="m-2" (click)="editMember(row)" *ngIf="
               !(user.position === 'admin' && row.position === 'super-admin')
-            "
-          >
+            ">
             Edit user
           </button>
         </td>

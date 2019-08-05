@@ -1,11 +1,7 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div [hidden]="isLoading">
   <mat-form-field>
-    <input
-      matInput
-      (keyup)="applyMemberFilter($event.target.value)"
-      placeholder="Filter"
-    />
+    <input matInput (keyup)="applyMemberFilter($event.target.value)" placeholder="Filter" />
   </mat-form-field>
 
   <div class="mat-elevation-z8">
@@ -34,16 +30,10 @@
       <ng-container matColumnDef="btnSelect">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let row">
-          <button
-            mat-raised-button
-            color="primary"
-            class="m-2"
-            (click)="selectMember(row)"
-          >
+          <button mat-raised-button color="primary" class="m-2" (click)="selectMember(row)">
             Chose member
           </button>
         </td>
-        <!-- <mat-icon>history</mat-icon> -->
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

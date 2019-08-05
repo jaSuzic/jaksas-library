@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
   length: number;
   pageSize: number = 10;
   pageIndex: number = 0;
-  pageSizeOptions: number[] = [2, 5, 10, 20, 50];
+  pageSizeOptions: number[] = [5, 10, 20, 50];
   isLoading = false;
 
   constructor(private bookService: BookService, public dialog: MatDialog) {}

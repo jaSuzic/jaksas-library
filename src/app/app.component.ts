@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
         console.log("u erroru smo: ", err);
       }
     );
+    console.log("jaksa: ", this.isAuth);
   }
 
   ngOnDestroy() {

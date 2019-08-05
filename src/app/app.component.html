@@ -9,14 +9,9 @@
       <app-sidenav (clicked)="closeSidenav()"></app-sidenav>
     </mat-sidenav>
 
-    <mat-sidenav-content class="full-screen-height">
+    <mat-sidenav-content [ngClass]='isAuth ? "full-screen-height" : "img-background"'>
       <div class="col-xl-9 col-md-12 mx-auto">
-        <button
-          mat-button
-          class="menu-btn"
-          (click)="sidenav.toggle()"
-          *ngIf="isAuth"
-        >
+        <button mat-button class="menu-btn" (click)="sidenav.toggle()" *ngIf="isAuth">
           <mat-icon>menu</mat-icon>
         </button>
         <router-outlet></router-outlet>
@@ -24,7 +19,3 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-
-<!-- <div class="col-12" *ngIf='!isAuth'>
-  <router-outlet></router-outlet>
-</div> -->

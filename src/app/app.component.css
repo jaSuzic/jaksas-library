@@ -1,3 +1,8 @@
+body,
+html {
+  height: 100%;
+}
+
 .primary-background {
   background: #3f51b5;
 }
@@ -12,4 +17,18 @@ button:focus {
 
 .minimal {
   min-width: 600px;
+}
+
+.img-background {
+  background-image: url('../assets/background/alfons-morales-YLSwjSy7stw-unsplash.jpg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.center-login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
