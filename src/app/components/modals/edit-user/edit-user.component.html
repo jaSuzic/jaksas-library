@@ -10,6 +10,7 @@
               placeholder="First name"
               type="text"
               formControlName="firstName"
+              required
             />
           </mat-form-field>
 
@@ -19,6 +20,7 @@
               placeholder="Last name"
               type="text"
               formControlName="lastName"
+              required
             />
           </mat-form-field>
         </div>
@@ -30,12 +32,13 @@
               placeholder="email"
               type="email"
               formControlName="email"
+              required
             />
           </mat-form-field>
 
           <mat-form-field class="col-6 pr-0">
             <mat-label>Select position:</mat-label>
-            <mat-select formControlName="position">
+            <mat-select formControlName="position" required>
               <mat-option value="librarian">
                 Librarian
               </mat-option>

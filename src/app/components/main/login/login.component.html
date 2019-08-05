@@ -1,14 +1,39 @@
 <mat-card class="col-6 login-container">
-  <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+  <form [formGroup]="loginForm">
     <mat-form-field class="col-10 m-2">
-      <input matInput type="email" placeholder="E-Mail" name="email" #emailInput="ngModel" required email ngModel />
-      <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+      <input
+        matInput
+        type="email"
+        placeholder="E-Mail"
+        required
+        email
+        formControlName="email"
+      />
+      <mat-error *ngIf="loginForm.get('email').hasError('required')"
+        >Email field cannot be empty.</mat-error
+      >
+      <mat-error *ngIf="loginForm.get('email').hasError('email')"
+        >Please insert valid email address.</mat-error
+      >
     </mat-form-field>
-
     <mat-form-field class="col-10 m-2">
-      <input matInput type="password" placeholder="Password" name="password" #password="ngModel" required ngModel />
+      <input
+        matInput
+        type="password"
+        placeholder="Password"
+        required
+        formControlName="password"
+      />
+      <mat-error *ngIf="loginForm.get('password').hasError('required')"
+        >Password field cannot be empty</mat-error
+      >
+      <mat-error *ngIf="loginForm.get('password').hasError('wrong')"
+        >Password or email are wrong</mat-error
+      >
+      <!--     {{ emailInput.errors | json}}
+ -->
     </mat-form-field>
     <br />
-    <button mat-raised-button color="primary">Login</button>
+    <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
   </form>
 </mat-card>

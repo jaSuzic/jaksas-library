@@ -1,16 +1,37 @@
 <div class="wrapper">
-  <h3 mat-dialog-title class='col-10 mx-auto'>{{ data.edit ? "Edit member" : "Add new member" }}</h3>
-  <div mat-dialog-content class='text-center'>
+  <h3 mat-dialog-title class="col-10 mx-auto">
+    {{ data.edit ? "Edit member" : "Add new member" }}
+  </h3>
+  <div mat-dialog-content class="text-center">
     <mat-form-field class="col-10">
-      <input matInput placeholder="First name" type="text" [(ngModel)]="data.firstName" />
+      <input
+        matInput
+        placeholder="First name"
+        type="text"
+        [(ngModel)]="data.firstName"
+        required
+      />
     </mat-form-field>
 
     <mat-form-field class="col-10">
-      <input matInput placeholder="Last name" type="text" [(ngModel)]="data.lastName" />
+      <input
+        matInput
+        placeholder="Last name"
+        type="text"
+        [(ngModel)]="data.lastName"
+        required
+      />
     </mat-form-field>
 
     <mat-form-field (click)="picker.open()" class="col-10">
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="data.birthDate" readonly />
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Choose a date"
+        [(ngModel)]="data.birthDate"
+        readonly
+        required
+      />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker disabled="false"></mat-datepicker>
     </mat-form-field>

@@ -21,31 +21,33 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   loginUser(email: string, password: string) {
-    this.http
-      .post<{ token: string; message: string; expiresIn: number; user: User }>(
-        BACKEND_URL + "/login",
-        {
-          email: email,
-          password: password
-        }
-      )
-      .subscribe(response => {
-        this.token = response.token;
-        if (this.token) {
-          const expiresInDuration = response.expiresIn;
-          this.tokenTimer = setTimeout(() => {
-            this.logout();
-          }, expiresInDuration * 1000);
-          this.tokenStatus.next([this.token]);
-          this.isAuth = true;
-          this.user = response.user;
-          const now = new Date();
-          const expDate = new Date(now.getTime() + expiresInDuration * 1000);
-          this.saveAuthData(this.token, expDate, this.user);
-          this.isAuthObservable.next(true);
-          this.router.navigate(["/"]);
-        }
-      });
+    return this.http.post<{
+      token: string;
+      message: string;
+      expiresIn: number;
+      user: User;
+    }>(BACKEND_URL + "/login", {
+      email: email,
+      password: password
+    });
+  }
+
+  processLogin(data) {
+    this.token = data.token;
+    if (this.token) {
+      const expiresInDuration = data.expiresIn;
+      this.tokenTimer = setTimeout(() => {
+        this.logout();
+      }, expiresInDuration * 1000);
+      this.tokenStatus.next([this.token]);
+      this.isAuth = true;
+      this.user = data.user;
+      const now = new Date();
+      const expDate = new Date(now.getTime() + expiresInDuration * 1000);
+      this.saveAuthData(this.token, expDate, this.user);
+      this.isAuthObservable.next(true);
+      this.router.navigate(["/"]);
+    }
   }
 
   autoAuthUser() {
