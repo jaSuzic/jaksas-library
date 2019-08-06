@@ -20,7 +20,7 @@ export class EditRentComponent implements OnInit {
   changeMember() {
     const dialogRef = this.dialog.open(MembersSelectComponent, {
       disableClose: false,
-      width: "600px"
+      width: "550px"
     });
 
     const sub = dialogRef.componentInstance.selectedMember.subscribe(res => {
@@ -38,7 +38,7 @@ export class EditRentComponent implements OnInit {
   changeBook() {
     const dialogRef = this.dialog.open(BooksSelectComponent, {
       disableClose: false,
-      width: "600px"
+      width: "550px"
     });
 
     const sub = dialogRef.componentInstance.selectedBook.subscribe(res => {

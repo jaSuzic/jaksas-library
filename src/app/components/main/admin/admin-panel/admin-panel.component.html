@@ -2,7 +2,7 @@
   <mat-card-title>Admin panel</mat-card-title>
   <mat-card-content>
     <mat-accordion>
-      <mat-expansion-panel>
+      <mat-expansion-panel class="mb-2">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Changing password
@@ -14,7 +14,7 @@
         <app-change-pass></app-change-pass>
       </mat-expansion-panel>
 
-      <mat-expansion-panel>
+      <mat-expansion-panel class="mb-2">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Change image
@@ -26,7 +26,7 @@
         <app-change-image></app-change-image>
       </mat-expansion-panel>
 
-      <mat-expansion-panel *ngIf="user.position !== 'librarian'">
+      <mat-expansion-panel *ngIf="user.position !== 'librarian'" class="mb-2">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Register new user
@@ -39,7 +39,7 @@
         <app-register-user> </app-register-user>
       </mat-expansion-panel>
 
-      <mat-expansion-panel *ngIf="user.position !== 'librarian'">
+      <mat-expansion-panel *ngIf="user.position !== 'librarian'" class="mb-2">
         <mat-expansion-panel-header>
           <mat-panel-title>
             List of users

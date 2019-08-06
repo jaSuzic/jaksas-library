@@ -7,18 +7,15 @@
 
     <mat-icon class="close-icon" (click)="close()">close</mat-icon>
   </div>
-  <div class="d-inline-block small" style="background-color: Lavender">
+  <div *ngIf='rents && rents.length>0' class="d-inline-block small" style="background-color: Lavender">
     active rent
   </div>
 </div>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div [hidden]="isLoading">
   <mat-accordion>
-    <mat-expansion-panel
-      *ngFor="let rent of rents"
-      autofocus
-      [ngStyle]="{ 'background-color': rent.returnDate ? null : 'Lavender' }"
-    >
+    <mat-expansion-panel *ngFor="let rent of rents" autofocus
+      [ngStyle]="{ 'background-color': rent.returnDate ? null : 'Lavender' }">
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{ rent.bookId.title }}
@@ -41,3 +38,4 @@
     </mat-expansion-panel>
   </mat-accordion>
 </div>
+<p *ngIf='!rents || rents.length<1' class='text-center'>No rent history for this member.</p>

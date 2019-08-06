@@ -59,7 +59,6 @@ export class EditUserComponent implements OnInit {
   }
 
   delete() {
-    // this.bookService.deleteBook(this.data.id);
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       width: "200px",
       data: "Are you sure you want to delete this user???"
@@ -93,7 +92,6 @@ export class EditUserComponent implements OnInit {
     const lastName = this.form.value.lastName;
     const email = this.form.value.email;
     const position = this.form.value.position;
-    console.log(this.form.value.image);
     const image = this.form.value.image ? this.form.value.image.image : null;
     this.userService
       .updateUser(id, firstName, lastName, email, position, image)

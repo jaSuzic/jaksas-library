@@ -121,15 +121,12 @@ export class ListRentsComponent implements OnInit, OnDestroy {
 
   returnBook(row) {
     const dialogRef = this.dialog.open(ReturnDateComponent, {
+      width: "550px",
       data: {
         id: row._id,
         rentDate: row.rentDate
       },
       disableClose: true
-    });
-
-    dialogRef.afterClosed().subscribe(res => {
-      console.log(res);
     });
   }
 

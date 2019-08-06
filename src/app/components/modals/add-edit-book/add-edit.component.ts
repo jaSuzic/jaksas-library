@@ -101,7 +101,7 @@ export class AddEditComponent implements OnInit {
             this.dialogRef.close();
           },
           err => {
-            console.log("NOT ok");
+            console.log("NOT ok", err);
           }
         );
       }

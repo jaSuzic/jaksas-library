@@ -25,13 +25,11 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           if (res) {
-            console.log("u resu smo");
             this.authService.processLogin(res);
           } else {
           }
         },
         err => {
-          console.log("u erroru smo");
           this.loginForm.get("password").setErrors({ wrong: true });
         }
       );

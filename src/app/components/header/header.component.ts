@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
@@ -18,6 +18,8 @@ export class HeaderComponent implements OnInit {
   position: string = "test";
   user: User;
 
+  @Output() logoutClicked = new EventEmitter();
+
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
@@ -26,11 +28,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.getUser();
-    console.log(this.user);
   }
 
   addNewBook() {
     const dialogRef = this.dialog.open(AddEditComponent, {
+      width: "550px",
       data: {
         edit: false,
         title: "",
@@ -48,6 +50,7 @@ export class HeaderComponent implements OnInit {
 
   addNewMember() {
     const dialogRef = this.dialog.open(AddEditMemberComponent, {
+      width: "550px",
       data: {
         edit: false,
         firstName: "",
@@ -61,5 +64,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.logoutClicked.emit();
   }
 }

@@ -60,7 +60,6 @@ export class BookService {
     year: number,
     image: File
   ) {
-    console.log(image);
     const newBook = new FormData();
     newBook.append("title", title);
     newBook.append("author", author);

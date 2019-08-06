@@ -36,7 +36,6 @@ export class ListUsersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this.authService.getUser();
-    // this.callSearch();
     this.sub = this.userService.getUserStatus().subscribe(res => {
       if (res) {
         this.callSearch();
