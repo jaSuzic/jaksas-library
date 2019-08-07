@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: "https://mighty-cove-79803.herokuapp.com"
 };
