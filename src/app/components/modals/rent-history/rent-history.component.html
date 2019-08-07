@@ -38,4 +38,4 @@
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-<p *ngIf='!rents || rents.length<1' class='text-center'>No rent history for this member.</p>
+<p *ngIf='(!rents || rents.length<1) && !isLoading' class='text-center'>No rent history for this member.</p>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Member } from 'src/app/models/member.model';
 import { MemberService } from 'src/app/services/member.service';
@@ -18,6 +18,15 @@ export class MembersSelectComponent implements OnInit {
   dataSourceMember: MatTableDataSource<any>;
   isLoading = false;
 
+  @Input() set resetPagination(value: boolean) {
+    if (value) {
+      if (this.dataSourceMember) {
+        if (this.dataSourceMember.paginator) {
+          this.dataSourceMember.paginator.firstPage();
+        }
+      }
+    }
+  }
   @Output() selectedMember = new EventEmitter<Member>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;

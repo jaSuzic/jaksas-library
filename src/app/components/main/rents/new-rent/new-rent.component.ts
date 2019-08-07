@@ -22,6 +22,7 @@ export class NewRentComponent implements OnInit {
   chosenDate: Date = new Date();
   memberForm: FormGroup;
   bookForm: FormGroup;
+  resetPaginator = false;
 
   @ViewChild(MatStepper, { static: false }) stepper: MatStepper;
 
@@ -63,6 +64,7 @@ export class NewRentComponent implements OnInit {
       .saveRent(this.chosenMember._id, this.chosenBook._id, this.chosenDate)
       .subscribe(
         res => {
+          this.resetPaginator = true;
           this.chosenBook = undefined;
           this.chosenMember = undefined;
           this.chosenDate = new Date();

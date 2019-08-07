@@ -3,4 +3,13 @@
   margin-top: 4rem;
   text-align: center;
   background: rgba(255, 255, 255, 0.9);
+  height: fit-content;
+}
+
+.button-about {
+  background: rgba(88, 88, 88, 0.596);
+  color: white;
+  font-weight: bold;
+  margin-top: 2rem;
+  float: right;
 }

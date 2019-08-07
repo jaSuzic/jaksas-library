@@ -12,7 +12,7 @@
         Go to next step<mat-icon>arrow_forward</mat-icon>
       </button>
     </mat-card>
-    <app-members-select (selectedMember)="choseMember($event)"></app-members-select>
+    <app-members-select [resetPagination]='resetPaginator' (selectedMember)="choseMember($event)"></app-members-select>
   </mat-step>
   <mat-step [stepControl]="bookForm">
     <!-- SECOND step -->
@@ -27,7 +27,7 @@
         Go to next step<mat-icon>arrow_forward</mat-icon>
       </button>
     </mat-card>
-    <app-books-select (selectedBook)="choseBook($event)"></app-books-select>
+    <app-books-select [resetPagination]='resetPaginator' (selectedBook)="choseBook($event)"></app-books-select>
   </mat-step>
   <mat-step>
     <!-- THIRD & FINAL step -->
