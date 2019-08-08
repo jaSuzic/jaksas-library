@@ -53,9 +53,9 @@
     </div>
   </div>
 
-  <div class="book-list" *ngFor="let book of books">
+  <div>
     <mat-accordion>
-      <mat-expansion-panel>
+      <mat-expansion-panel *ngFor="let book of books" class="book-list">
         <mat-expansion-panel-header>
           <mat-panel-title> {{ book.title }} </mat-panel-title>
           <mat-panel-description>
