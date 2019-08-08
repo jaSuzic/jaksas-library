@@ -80,11 +80,10 @@ export class AddEditComponent implements OnInit {
             this.dialogRef.close();
           },
           err => {
-            //do something with error
+            console.log("Error: ", err);
           }
         );
     }
-    //try save if success then this.dialogRef.close(); if not display message
   }
 
   delete() {

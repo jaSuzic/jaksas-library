@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://mighty-cove-79803.herokuapp.com"
+  apiUrl: "https://mighty-cove-79803.herokuapp.com/api"
 };
 
 /*

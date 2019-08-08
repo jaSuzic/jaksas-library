@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { AuthService } from 'src/app/services/auth.service';
+
+import { AboutComponent } from './../../modals/about/about.component';
 
 @Component({
   selector: "app-login",
@@ -9,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -33,5 +36,21 @@ export class LoginComponent implements OnInit {
           this.loginForm.get("password").setErrors({ wrong: true });
         }
       );
+  }
+
+  openAboutAuthor() {
+    const dialogRef = this.dialog.open(AboutComponent, {
+      width: "550px",
+      data: { author: true }
+    });
+  }
+
+  openAboutApp() {
+    const dialogRef = this.dialog.open(AboutComponent, {
+      width: "550px",
+      height: "400px",
+      autoFocus: false,
+      data: { app: true }
+    });
   }
 }

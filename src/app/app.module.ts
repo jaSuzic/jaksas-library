@@ -24,6 +24,7 @@ import { ListActiveRentsComponent } from './components/main/rents/list-active-re
 import { ListRentsComponent } from './components/main/rents/list-rents/list-rents.component';
 import { MembersSelectComponent } from './components/main/rents/members-select/members-select.component';
 import { NewRentComponent } from './components/main/rents/new-rent/new-rent.component';
+import { AboutComponent } from './components/modals/about/about.component';
 import { AddEditComponent } from './components/modals/add-edit-book/add-edit.component';
 import { AddEditMemberComponent } from './components/modals/add-edit-member/add-edit-member.component';
 import { ConfirmationModalComponent } from './components/modals/confirmation-modal/confirmation-modal.component';
@@ -59,7 +60,8 @@ import { MaterialModule } from './material.module';
     ListActiveRentsComponent,
     ReturnDateComponent,
     RentHistoryComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ import { MaterialModule } from './material.module';
     BooksSelectComponent,
     EditUserComponent,
     ReturnDateComponent,
-    RentHistoryComponent
+    RentHistoryComponent,
+    AboutComponent
   ],
   providers: [
     MatDatepickerModule,

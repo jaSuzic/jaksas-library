@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
     { key: "title: -1", value: "Title ▲" }
   ];
   length: number;
-  pageSize: number = 10;
+  pageSize: number = 5;
   pageIndex: number = 0;
   pageSizeOptions: number[] = [5, 10, 20, 50];
   isLoading = false;

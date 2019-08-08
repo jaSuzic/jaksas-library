@@ -1,0 +1,11 @@
+.close-btn {
+  cursor: pointer;
+}
+
+p {
+  text-indent: 2rem;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
