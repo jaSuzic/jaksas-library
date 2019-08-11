@@ -45,7 +45,6 @@ export class BookService {
     if (image) {
       newBook.append("image", image, title);
     }
-    // const newBook = { title: title, author: author, year: year };
     return this.http.post<{ message: string }>(BACKEND_URL, newBook);
   }
 
@@ -58,16 +57,20 @@ export class BookService {
     title: string,
     author: string,
     year: number,
-    image: File
+    image: File | string
   ) {
     const newBook = new FormData();
     newBook.append("title", title);
     newBook.append("author", author);
     newBook.append("year", year.toString());
     if (image) {
-      newBook.append("image", image, title);
+      if (typeof image === "object") {
+        newBook.append("image", image, title);
+      } else {
+        newBook.append("imagePath", image);
+      }
     }
-    return this.http.put(BACKEND_URL + "/" + id, newBook);
+    return this.http.patch(BACKEND_URL + "/" + id, newBook);
   }
 
   booksUpdated() {

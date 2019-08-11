@@ -13,6 +13,7 @@ import { ConfirmationModalComponent } from './../confirmation-modal/confirmation
   styleUrls: ["./edit-user.component.css"]
 })
 export class EditUserComponent implements OnInit {
+  isLoading = false;
   form: FormGroup;
   imagePreview: string;
   user: User;
@@ -87,12 +88,20 @@ export class EditUserComponent implements OnInit {
   }
 
   save() {
+    this.isLoading = true;
     const id = this.data.id;
     const firstName = this.form.value.firstName;
     const lastName = this.form.value.lastName;
     const email = this.form.value.email;
     const position = this.form.value.position;
-    const image = this.form.value.image ? this.form.value.image.image : null;
+    let image;
+    if (this.form.value.image) {
+      if (typeof this.form.value.image === "object") {
+        image = this.form.value.image.image;
+      } else {
+        image = this.form.value.image;
+      }
+    }
     this.userService
       .updateUser(id, firstName, lastName, email, position, image)
       .subscribe(
@@ -103,6 +112,7 @@ export class EditUserComponent implements OnInit {
           });
           this.userService.usersUpdated();
           this.dialogRef.close();
+          this.isLoading = false;
         },
         err => {
           console.log(err);
@@ -110,6 +120,7 @@ export class EditUserComponent implements OnInit {
             duration: 8000,
             panelClass: ["warning-snackbar"]
           });
+          this.isLoading = false;
         }
       );
   }

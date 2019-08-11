@@ -62,21 +62,23 @@
             {{ book.author }}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <div class="d-flex">
-          <div class="col-6">
-            Title: <strong>{{ book.title }}</strong> <br />
-            Author: <strong>{{ book.author }}</strong> <br />
-            Year of publishing: <strong>{{ book.year }}</strong>
+        <ng-template matExpansionPanelContent>
+          <div class="d-flex">
+            <div class="col-6">
+              Title: <strong>{{ book.title }}</strong> <br />
+              Author: <strong>{{ book.author }}</strong> <br />
+              Year of publishing: <strong>{{ book.year }}</strong>
+            </div>
+            <div class="col-6" *ngIf="book.imagePath" class="text-center">
+              <img alt="cover" class="cover-image" [src]="book.imagePath" />
+            </div>
           </div>
-          <div class="col-6" *ngIf="book.imagePath" class="text-center">
-            <img alt="cover" class="cover-image" [src]="book.imagePath" />
-          </div>
-        </div>
-        <mat-action-row>
-          <button mat-raised-button color="primary" (click)="editBook(book)">
-            Edit
-          </button>
-        </mat-action-row>
+          <mat-action-row>
+            <button mat-raised-button color="primary" (click)="editBook(book)">
+              Edit
+            </button>
+          </mat-action-row>
+        </ng-template>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

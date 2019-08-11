@@ -12,9 +12,7 @@ import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-m
   styleUrls: ["./add-edit.component.css"]
 })
 export class AddEditComponent implements OnInit {
-  title: string;
-  author: string;
-  year: number;
+  isLoading = false;
   form: FormGroup;
   imagePreview: string;
 
@@ -47,7 +45,9 @@ export class AddEditComponent implements OnInit {
   }
 
   save() {
+    this.isLoading = true;
     if (this.data.edit) {
+      console.log(this.form.value.image);
       this.bookService
         .updateBook(
           this.data.id,
@@ -58,8 +58,9 @@ export class AddEditComponent implements OnInit {
         )
         .subscribe(
           res => {
-            this.bookService.booksUpdated();
             this.dialogRef.close();
+            this.bookService.booksUpdated();
+            this.isLoading = false;
           },
           err => {
             console.log("There was error: ", err);
@@ -78,6 +79,7 @@ export class AddEditComponent implements OnInit {
             this.router.navigate(["/books"]);
             this.bookService.booksUpdated();
             this.dialogRef.close();
+            this.isLoading = false;
           },
           err => {
             console.log("Error: ", err);

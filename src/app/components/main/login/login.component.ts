@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
   openAboutAuthor() {
     const dialogRef = this.dialog.open(AboutComponent, {
       width: "550px",
+      height: "400px",
+      autoFocus: false,
       data: { author: true }
     });
   }

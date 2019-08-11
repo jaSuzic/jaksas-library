@@ -51,7 +51,7 @@ export class UserService {
     lastName: string,
     email: string,
     position: string,
-    image: File
+    image: File | string
   ) {
     const newUser = new FormData();
 
@@ -60,7 +60,13 @@ export class UserService {
     newUser.append("lastName", lastName);
     newUser.append("email", email);
     newUser.append("position", position);
-    newUser.append("image", image);
+    if (image) {
+      if (typeof image === "object") {
+        newUser.append("image", image);
+      } else {
+        newUser.append("imagePath", image);
+      }
+    }
     return this.http.put(BACKEND_URL + "/updateUser", newUser);
   }
 

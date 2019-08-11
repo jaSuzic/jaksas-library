@@ -2,7 +2,8 @@
   <h3 mat-dialog-title class="col-10 mx-auto">
     {{ data.edit ? "Edit book" : "Add new book" }}
   </h3>
-  <div mat-dialog-content class="cancel-overflow">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <div mat-dialog-content [hidden]="isLoading" class="cancel-overflow">
     <form [formGroup]="form">
       <div class="text-center">
         <mat-form-field class="col-10">

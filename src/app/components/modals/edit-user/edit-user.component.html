@@ -1,7 +1,8 @@
 <div class="wrapper">
   <h3 mat-dialog-title class="col-10 mx-auto">Edit user</h3>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
   <div mat-dialog-content>
-    <form [formGroup]="form">
+    <form [formGroup]="form" [hidden]="isLoading">
       <div class="text-center">
         <div class="col-10 mx-auto">
           <mat-form-field class="col-6 pl-0">
