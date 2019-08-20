@@ -28,6 +28,7 @@ export class ChangePassComponent implements OnInit {
       newPass: new FormControl(null, Validators.required),
       confirmPass: new FormControl(null, Validators.required)
     });
+    console.log(this.user);
   }
 
   sendNewPass() {

@@ -27,7 +27,12 @@
       to help when I can. In my opinion, not knowing something is perfectly
       normal, but thinking to know something that you don't can be very harmful.
     </p>
-    <button mat-raised-button>Download my CV</button>
+    <a
+      mat-raised-button
+      href="https://app-library-jaksa.s3.eu-west-3.amazonaws.com/JaksaSuzicCv.pdf"
+      target="_blank"
+      >Download my CV</a
+    >
   </mat-card>
 </div>
 <div class="about-app" *ngIf="data.app">
@@ -93,6 +98,12 @@
       also be removed. This project is available on the GitHub repo through the
       following link:
       <a href="https://github.com/jaSuzic/app-library" target="_blank">LINK</a>
+    </p>
+    <p>
+      For login information you can use:<br />
+      username: <i>lib@test.com</i>, password <i>test</i> for librarian or
+      <br />
+      username: <i>admin@test.com</i>, password <i>test</i> for admin role.
     </p>
   </mat-card>
 </div>

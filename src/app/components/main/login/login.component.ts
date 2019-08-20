@@ -12,6 +12,7 @@ import { AboutComponent } from './../../modals/about/about.component';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isLoading = false;
   constructor(private authService: AuthService, public dialog: MatDialog) {}
 
   ngOnInit() {
@@ -23,17 +24,20 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     if (this.loginForm.invalid) return;
+    this.isLoading = true;
     this.authService
       .loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
         res => {
           if (res) {
             this.authService.processLogin(res);
+            this.isLoading = false;
           } else {
           }
         },
         err => {
           this.loginForm.get("password").setErrors({ wrong: true });
+          this.isLoading = false;
         }
       );
   }

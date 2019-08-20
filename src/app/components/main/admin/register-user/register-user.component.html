@@ -1,4 +1,5 @@
-<form [formGroup]="userGroup">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<form [formGroup]="userGroup" [hidden]="isLoading">
   <mat-form-field class="col-sm-12 col-md-6 col-xl-6">
     <input matInput placeholder="First name" formControlName="firstName" />
   </mat-form-field>

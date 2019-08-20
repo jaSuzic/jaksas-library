@@ -15,6 +15,7 @@ export class RegisterUserComponent implements OnInit {
   userGroup: FormGroup;
   imagePreview;
   user: User;
+  isLoading = false;
 
   constructor(
     private authService: AuthService,
@@ -46,6 +47,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   registerUser() {
+    this.isLoading = true;
     const email = this.userGroup.value.email;
     const password = this.userGroup.value.password;
     const firstName = this.userGroup.value.firstName;
@@ -63,6 +65,8 @@ export class RegisterUserComponent implements OnInit {
             panelClass: ["correct-snackbar"]
           });
           this.userService.usersUpdated();
+          this.isLoading = false;
+          this.imagePreview = null;
         },
         err => {
           console.log("Error: ", err);
@@ -70,6 +74,7 @@ export class RegisterUserComponent implements OnInit {
             duration: 8000,
             panelClass: ["warning-snackbar"]
           });
+          this.isLoading = false;
         }
       );
   }
