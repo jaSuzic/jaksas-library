@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <div class="logo">
       <a [routerLink]="['/']">
-        <img src="../../../assets/logo.png" alt="Logo image" />
+        <img src="assets/logo.png" alt="Logo image" />
       </a>
     </div>
     <span class="spacer"></span>
@@ -18,12 +18,16 @@
             <form class="w-100">
               <div class="form-container">
                 <div class="input-field">
-                  <span class='small-font'>Name: </span><br>
-                  <span style='color: rgba(0,0,0,.38);'>{{user.lastName}} {{user.firstName}}</span>
+                  <span class="small-font">Name: </span><br />
+                  <span style="color: rgba(0,0,0,.38);"
+                    >{{ user.lastName }} {{ user.firstName }}</span
+                  >
                 </div>
                 <div class="input-field">
-                  <span class='small-font'>Position: </span><br>
-                  <span style='color: rgba(0,0,0,.38);'>{{user.position}}</span>
+                  <span class="small-font">Position: </span><br />
+                  <span style="color: rgba(0,0,0,.38);">{{
+                    user.position
+                  }}</span>
                 </div>
               </div>
             </form>
