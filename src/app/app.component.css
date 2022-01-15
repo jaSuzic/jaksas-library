@@ -1,0 +1,34 @@
+body,
+html {
+  height: 100%;
+}
+
+.primary-background {
+  background: #3f51b5;
+}
+
+.full-screen-height {
+  min-height: calc(100vh - 150px);
+}
+
+button:focus {
+  outline: none;
+}
+
+.minimal {
+  min-width: 600px;
+}
+
+.img-background {
+  background-image: url('../assets/background/book-bg.jpg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.center-login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

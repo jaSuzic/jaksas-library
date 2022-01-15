@@ -1,0 +1,173 @@
+.logo {
+  margin: 0 1rem 0 0 auto;
+  display: block;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.round-img {
+  border-radius: 20%;
+}
+
+.right {
+  -webkit-box-flex: 2;
+  -ms-flex: 2 auto;
+  flex: 2 auto;
+  display: block;
+}
+
+.spacer {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 auto;
+  flex: 1 auto;
+}
+
+mat-toolbar-row {
+  height: auto !important;
+  padding: 0;
+}
+
+.personal-data {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.form-container {
+  display: flex;
+}
+
+.input-field {
+  width: 50%;
+  text-align: center;
+}
+
+.small-font {
+  font-size: .8rem;
+  color: azure;
+}
+
+.personal-image {
+  height: 5rem;
+  width: 5rem;
+}
+
+.personal-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+mat-card {
+  display: flex;
+  margin-top: 1rem;
+  background: rgba(238, 238, 238, .3)
+}
+
+.mat-raised-button:hover {
+  background-color: rgb(193, 192, 255);
+}
+
+mat-form-field {
+  display: inline-block;
+  margin-bottom: -1.5rem;
+  text-align: center;
+}
+
+.buttons {
+  padding: .2rem 0;
+}
+
+.buttons button {
+  -webkit-box-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+}
+
+.show-buttons {
+  display: flex;
+}
+
+.show-menu {
+  display: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+.bigger-display-font {
+  /* color: rgba(0,0,0,.38); */
+  color: rgb(51, 46, 46);
+}
+
+/* @media only screen and (max-width: 1000px){
+  .personal-data {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  
+  .form-container {
+    display: block;
+  }
+  
+  .input-field{
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .mat-form-field{
+    display: block;
+    margin-bottom: -1rem;
+    text-align: center
+  }
+
+  .right{
+    font-size: smaller;
+  }
+} */
+
+@media only screen and (max-width: 1000px) {
+
+  .show-buttons {
+    display: none !important;
+  }
+
+  .show-menu {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+  .personal-data {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  .form-container {
+    display: block;
+  }
+
+  .input-field {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .mat-form-field {
+    display: block;
+    margin-bottom: -1rem;
+    text-align: center
+  }
+
+  .right {
+    font-size: smaller;
+  }
+}

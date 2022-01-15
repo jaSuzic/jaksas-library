@@ -1,0 +1,26 @@
+<div *ngIf="user.email === 'admin@test.com' || user.email === 'lib@test.com';
+    else showForm">
+    <p>
+        Sorry, but for test accounts you cannot change password or image. You
+        can however register new user (with admin) and then do whatever you want
+        with that user.
+    </p>
+</div>
+
+<ng-template #showForm>
+    <p>After saving change you'll have to login again.</p>
+    <div class="image-preview padding-btn" *ngIf="imagePreview !== '' && imagePreview">
+        <img [src]="imagePreview" alt="Image preview" />
+    </div>
+
+    <div class="padding-btn">
+        <button mat-stroked-button type="button" (click)="filePicker.click()">
+            Pick image
+        </button>
+        <input type="file" #filePicker accept="image/*" (change)="onImageChange($event)" />
+    </div>
+
+    <button mat-raised-button class="mt-2 padding-btn" [disabled]="imageFormControl.invalid" (click)="sendNewImage()">
+        Save changes
+    </button>
+</ng-template>

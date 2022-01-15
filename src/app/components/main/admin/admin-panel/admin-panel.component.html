@@ -1,0 +1,57 @@
+<mat-card>
+    <mat-card-title>Admin panel</mat-card-title>
+    <mat-card-content>
+        <mat-accordion>
+            <mat-expansion-panel class="mb-2">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Changing password
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Click here if you want to change your login password
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-change-pass></app-change-pass>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="mb-2">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Change image
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Click here if you want to change your picture
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-change-image></app-change-image>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel *ngIf="user.position !== 'librarian'" class="mb-2">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Register new user
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Click here to add new user
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-register-user> </app-register-user>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel *ngIf="user.position !== 'librarian'" class="mb-2">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        List of users
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Click here to view/edit users
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                    <app-list-users> </app-list-users>
+                </ng-template>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card-content>
+</mat-card>

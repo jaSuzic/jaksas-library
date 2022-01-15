@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.long-text {
+  white-space: normal !important;
+  line-height: normal;
+}
+
+.mat-raised-button {
+  line-height: 20px !important;
+}
+
+.mat-raised-button::first-line {
+  line-height: 36px !important;
+}
+
+mat-spinner {
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.warning-snackbar {
+  background-color: rgba(242, 38, 19, .85);
+  color: whitesmoke;
+}
+
+.correct-snackbar {
+  background-color: rgba(46, 204, 113, .85);
+  color: whitesmoke;
+}

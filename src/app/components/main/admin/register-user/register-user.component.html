@@ -1,0 +1,45 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<form [formGroup]="userGroup" [hidden]="isLoading">
+    <mat-form-field class="col-sm-12 col-md-6 col-xl-6">
+        <input matInput placeholder="First name" formControlName="firstName" required />
+    </mat-form-field>
+
+    <mat-form-field class="col-sm-12 col-md-6 col-xl-6">
+        <input matInput placeholder="Last name" formControlName="lastName" required />
+    </mat-form-field>
+
+    <mat-form-field class="col-sm-12 col-md-6 col-xl-6">
+        <input matInput placeholder="E-mail" formControlName="email" required email />
+    </mat-form-field>
+
+    <mat-form-field class="col-sm-12 col-md-6 col-xl-6">
+        <input matInput type="password" placeholder="Password" formControlName="password" required />
+    </mat-form-field>
+
+    <mat-form-field class="col-sm-12 col-md-6 col-xl-6">
+        <mat-label>Select position:</mat-label>
+        <mat-select formControlName="position" required>
+            <mat-option value="librarian"> Librarian </mat-option>
+            <mat-option value="admin"> Admin </mat-option>
+            <mat-option [disabled]="user.position !== 'super-admin'" value="super-admin">
+                Super-admin
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="image-preview button-margin" *ngIf="imagePreview !== '' && imagePreview">
+        <img [src]="imagePreview" alt="Image preview" />
+    </div>
+
+    <div>
+        <button mat-stroked-button class="button-margin" type="button" (click)="filePicker.click()">
+            Pick image
+        </button>
+        <input type="file" name="" id="" #filePicker accept="image/*" (change)="onImageChange($event)" />
+    </div>
+
+    <button mat-raised-button class="mt-2 button-margin" [disabled]="!userGroup.valid" (click)="registerUser()"
+        type="reset">
+        Register user
+    </button>
+</form>

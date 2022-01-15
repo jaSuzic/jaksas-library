@@ -1,0 +1,29 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="col-6 mx-auto" [hidden]="isLoading">
+    <mat-card class="login-container">
+        <form [formGroup]="loginForm">
+            <mat-form-field class="col-10 m-2">
+                <input matInput type="email" placeholder="E-Mail" required email formControlName="email" />
+                <mat-error *ngIf="loginForm.get('email').hasError('required')">Email field cannot be empty.</mat-error>
+                <mat-error *ngIf="loginForm.get('email').hasError('email')">Please insert valid email address.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-10 m-2">
+                <input matInput type="password" placeholder="Password" required formControlName="password" />
+                <mat-error *ngIf="loginForm.get('password').hasError('required')">Password field cannot be empty
+                </mat-error>
+                <mat-error *ngIf="loginForm.get('password').hasError('wrong')">Password or email are wrong</mat-error>
+            </mat-form-field>
+            <br />
+            <button mat-raised-button type="submit" color="primary" (click)="onLogin()">
+                Login
+            </button>
+        </form>
+    </mat-card>
+    <button mat-button class="button-about" (click)="openAboutApp()">
+        About this project
+    </button>
+    <button mat-button class="button-about mr-2" (click)="openAboutAuthor()">
+        About author
+    </button>
+</div>

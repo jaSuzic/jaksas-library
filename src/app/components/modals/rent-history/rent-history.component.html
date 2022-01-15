@@ -1,0 +1,41 @@
+<div class="pb-3">
+    <div class="d-flex">
+        <div>
+            Rental history for <strong>{{ data.fullName }}</strong>
+        </div>
+        <div class="spacer"></div>
+
+        <mat-icon class="close-icon" (click)="close()">close</mat-icon>
+    </div>
+    <div *ngIf='rents && rents.length>0' class="d-inline-block small" style="background-color: Lavender">
+        active rent
+    </div>
+</div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div [hidden]="isLoading">
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let rent of rents" autofocus
+            [ngStyle]="{ 'background-color': rent.returnDate ? null : 'Lavender' }">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ rent.book.title }}
+                </mat-panel-title>
+                <mat-panel-description>
+                    Click to expand
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div>Author: {{ rent.book.author }}</div>
+            <div>Published: {{ rent.book.year }}</div>
+            <div>Rented: {{ rent.rentDate | date: "dd/MM/yyyy" }}</div>
+            <div>
+                Returned:
+                {{
+          rent.returnDate
+            ? (rent.returnDate | date: "dd/MM/yyyy")
+            : "Not returned"
+        }}
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+<p *ngIf='(!rents || rents.length<1) && !isLoading' class='text-center'>No rent history for this member.</p>

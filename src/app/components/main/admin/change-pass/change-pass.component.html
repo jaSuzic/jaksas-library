@@ -1,0 +1,35 @@
+<form [formGroup]="passGroup">
+    <div *ngIf="user.email === 'admin@test.com' || user.email === 'lib@test.com';
+        else showForm">
+        <p>
+            Sorry, but for test accounts you cannot change password or image.
+            You can however register new user (with admin) and then do whatever
+            you want with that user.
+        </p>
+    </div>
+
+    <ng-template #showForm>
+        <p>After saving change you'll have to login again.</p>
+        <mat-form-field class="col-sm-12 col-md-6 col-xl-4">
+            <input type="password" matInput placeholder="Current password" formControlName="oldPass" />
+        </mat-form-field>
+
+        <mat-form-field class="col-sm-12 col-md-6 col-xl-4">
+            <input type="password" matInput placeholder="New password" formControlName="newPass" />
+            <mat-error *ngIf="passGroup.get('newPass').hasError('notSame')">
+                This two fields must be same
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-sm-12 col-md-6 col-xl-4">
+            <input type="password" matInput placeholder="Confirm new password" formControlName="confirmPass" />
+            <mat-error *ngIf="passGroup.get('confirmPass').hasError('notSame')">
+                This two fields must be same
+            </mat-error>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button class="save-btn" [disabled]="!passGroup.valid" (click)="sendNewPass()">
+            Save password
+        </button>
+    </ng-template>
+</form>

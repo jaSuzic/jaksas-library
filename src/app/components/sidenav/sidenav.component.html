@@ -1,0 +1,33 @@
+<ul class="list-group">
+    <li class="list-group-item">Rents<br>
+        <a routerLink='/new-rent' routerLinkActive="active" (click)='onClick()'
+            class="list-group-item list-group-item-action">
+            Rent book
+        </a>
+        <a routerLink='/active-rents' routerLinkActive="active" (click)='onClick()'
+            class="list-group-item list-group-item-action">
+            Active rents
+        </a>
+        <a routerLink='/rents' routerLinkActive="active" (click)='onClick()'
+            class="list-group-item list-group-item-action">
+            All rents
+        </a>
+    </li>
+    <li class="list-group-item">Members<br>
+        <a routerLink='/members' routerLinkActive="active" (click)='onClick()'
+            class="list-group-item list-group-item-action">
+            All members
+        </a></li>
+    <li class="list-group-item">Books<br>
+        <a routerLink='/books' routerLinkActive="active" (click)='onClick()'
+            class="list-group-item list-group-item-action">
+            All books
+        </a>
+    </li>
+    <li class="list-group-item" *ngIf="isAdmin()">Admin<br>
+        <a routerLink='/admin' routerLinkActive="active" (click)='onClick()'
+            class="list-group-item list-group-item-action">
+            Admin panel
+        </a>
+    </li>
+</ul>

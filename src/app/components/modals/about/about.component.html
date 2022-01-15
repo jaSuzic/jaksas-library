@@ -1,0 +1,107 @@
+<div class="about-author" *ngIf="data.author">
+    <mat-card>
+        <mat-card-header class="d-flex justify-content-between">
+            <mat-card-title>
+                About author
+            </mat-card-title>
+            <mat-icon (click)="closeModal()" class="close-btn">close</mat-icon>
+        </mat-card-header>
+        <p>
+            <!-- TODO: Change text -->
+            My name is Jaksa Suzic. I am a knowledge seeker, candy lover and also, a
+            software engineer...
+        </p>
+        <p>
+            Besides a love for gadgets and electronics in general, photography is my
+            big love and hobby. Long walk through nature is something that relax me
+            very much and helps me to "recharge my batteries". Waking up at 4 am to
+            watch the sunrise and trying to take a perfect shot? Not a problem, pure
+            enjoyment!
+        </p>
+        <p>
+            There are only a few things that can prevent me from accomplishing my
+            goals. Stubborn or persistent? Well...both. The key is to use the positive
+            side, and for now, I am quite successful in that.
+        </p>
+        <p>
+            I am not afraid to ask when I don't know something, and I am always ready
+            to help when I can. In my opinion, not knowing something is perfectly
+            normal, but thinking to know something that you don't can be very harmful.
+        </p>
+        <a mat-raised-button href="https://app-library-jaksa.s3.eu-west-3.amazonaws.com/JaksaSuzicCv.pdf"
+            target="_blank">Download my CV</a>
+    </mat-card>
+</div>
+<div class="about-app" *ngIf="data.app">
+    <mat-card>
+        <mat-card-header class="d-flex justify-content-between">
+            <mat-card-title>
+                About this project:
+            </mat-card-title>
+
+            <mat-icon (click)="closeModal()" class="close-btn">close</mat-icon>
+        </mat-card-header>
+        <p>
+            This is an online application for library management (renting books).
+            First, there is a login page with following user roles:
+        </p>
+        <ol>
+            <li>
+                Librarian
+            </li>
+            <li>
+                Admin
+            </li>
+            <li>
+                Super-Admin
+            </li>
+        </ol>
+        <p>
+            A librarian can add, edit and remove members, books and rents. Admin
+            shares the same functionalities as the librarian, but on top of that, he
+            can also add new users (with the role of librarian or another admin) and
+            remove existing users (except Super-Admin, which is a higher role.)
+            Super-Admin is the only user who can add or edit another Super-Admin along
+            with the same responsibilities as Admin. On this application, you may see
+            :
+        </p>
+        <ul>
+            <li>
+                A list of all books in the library with options to add a new book and
+                delete or edit an existing one.
+            </li>
+            <li>
+                A list of all library members, with options to add a new one and delete
+                or edit an existing member.
+            </li>
+            <li>
+                An option to create a new rent for an existing member and existing book
+                with the rent date.
+            </li>
+            <li>
+                A list of all book rents made and also a list of only active rents (if
+                the books are still not returned).
+            </li>
+            <li>An option to return the book with a date of choice.</li>
+        </ul>
+        <p>
+            This application contains an admin panel in which a Librarian can change
+            password or image. Admin has the same options with addition to register a
+            new user, see a list of all users and edit them (except for Super -
+            Admin). A currently active user must be excluded from the users list.
+        </p>
+        <p>
+            If a certain member or book are removed, all rents linked with them will
+            also be removed. This project is available on the GitHub repo through the
+            following link:
+            <a href="https://github.com/jaSuzic/jaksas-library" target="_blank">Frontend</a>,&nbsp;
+            <a href="https://github.com/jaSuzic/backEnd-library" target="_blank">Backend</a>
+        </p>
+        <p>
+            For login information you can use:<br />
+            username: <i>lib@test.com</i>, password <i>test</i> for librarian or
+            <br />
+            username: <i>admin@test.com</i>, password <i>test</i> for admin role.
+        </p>
+    </mat-card>
+</div>

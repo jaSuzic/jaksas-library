@@ -1,0 +1,70 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div [hidden]="isLoading">
+    <div class="col-12">
+        <div class="d-flex justify-content-around pt-3">
+            <mat-form-field class="col-3">
+                <input matInput type="text" placeholder="Book title" [(ngModel)]="titleSearch"
+                    (ngModelChange)="onFilterChange($event)" />
+                <button mat-button *ngIf="titleSearch" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="clearTitle()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-form-field class="col-3">
+                <input matInput type="text" placeholder="Book author" [(ngModel)]="authorSearch"
+                    (ngModelChange)="onFilterChange($event)" />
+                <button mat-button *ngIf="authorSearch" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="clearAuthor()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-form-field class="col-3">
+                <mat-label>Sort by: </mat-label>
+                <mat-select (selectionChange)="callSearch()" [(value)]="sortBy">
+                    <mat-option *ngFor="let item of items" [value]="item.key">
+                        {{ item.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div>
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let book of books" class="book-list">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> {{ book.title }} </mat-panel-title>
+                    <mat-panel-description>
+                        {{ book.author }}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                    <div class="d-flex">
+                        <div class="col-6">
+                            Title: <strong>{{ book.title }}</strong> <br />
+                            Author: <strong>{{ book.author }}</strong> <br />
+                            Year of publishing: <strong>{{ book.year }}</strong>
+                        </div>
+                        <div class="image-wrapper" class="text-center">
+                            <img alt="cover" class="cover-image" [src]="generateBookImageUrl(book.imagePath)"
+                                onerror="this.onerror=null;this.src='assets/noImage.png';" />
+                        </div>
+                    </div>
+                    <mat-action-row>
+                        <button mat-raised-button color="primary" (click)="editBook(book)">
+                            Edit
+                        </button>
+                    </mat-action-row>
+                </ng-template>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <div class="paginator mt-3">
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+            (page)="changePagination($event)">
+        </mat-paginator>
+    </div>
+</div>

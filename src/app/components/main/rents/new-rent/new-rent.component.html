@@ -1,0 +1,65 @@
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="memberForm">
+        <!-- FIRST STEP -->
+        <ng-template matStepLabel>Select member</ng-template>
+        <mat-card *ngIf="chosenMember" class="text-center">
+            <p>
+                You selected member:
+                <strong>{{ chosenMember.firstName }} {{ chosenMember.lastName }}</strong>
+                with date of birth: {{ chosenMember.birthDate | date: "dd/MM/yy" }}.
+            </p>
+            <button mat-button matStepperNext [disabled]="!chosenMember">
+                Go to next step<mat-icon>arrow_forward</mat-icon>
+            </button>
+        </mat-card>
+        <app-members-select [resetPagination]='resetPaginator' (selectedMember)="choseMember($event)">
+        </app-members-select>
+    </mat-step>
+    <mat-step [stepControl]="bookForm">
+        <!-- SECOND step -->
+        <ng-template matStepLabel>Select book</ng-template>
+        <mat-card *ngIf="chosenBook" class="text-center">
+            <p>
+                You selected book: <strong>{{ chosenBook.title }}</strong> from
+                <strong>{{ chosenBook.author }}</strong> released
+                {{ chosenBook.year }} year.
+            </p>
+            <button mat-button matStepperNext [disabled]="!chosenBook">
+                Go to next step<mat-icon>arrow_forward</mat-icon>
+            </button>
+        </mat-card>
+        <app-books-select [resetPagination]='resetPaginator' (selectedBook)="choseBook($event)"></app-books-select>
+    </mat-step>
+    <mat-step>
+        <!-- THIRD & FINAL step -->
+        <ng-template matStepLabel>Final check</ng-template>
+        <div class="d-flex mt-2 justify-content-center">
+            <mat-card class="col-4 p-2 text-center">
+                You selected user:<br /><br />
+                {{ chosenMember?.firstName }} {{ chosenMember?.lastName }}<br />
+                {{ chosenMember?.birthDate | date: "dd/MM/yyyy" }}
+            </mat-card>
+
+            <mat-card class="col-4 p-2 text-center">
+                And this book: <br /><br />
+                {{ chosenBook?.title }} <br />
+                {{ chosenBook?.author }} <br />
+                {{ chosenBook?.year }}
+            </mat-card>
+        </div>
+        <mat-card class="col-4 text-center mx-auto mt-2 text-center">
+            Please chose date or leave todays: <br /><br />
+            <mat-form-field (click)="picker.open()">
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="chosenDate"
+                    readonly />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker disabled="false"></mat-datepicker>
+            </mat-form-field>
+        </mat-card>
+        <div class="text-center">
+            <button mat-raised-button class="save-btn" (click)="saveRent()">
+                <mat-icon>check</mat-icon> Save rent
+            </button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

@@ -1,0 +1,20 @@
+.book-list {
+  margin-top: 0.5rem;
+}
+
+.cover-image {
+  height: 20rem;
+}
+
+.cover-image img {
+  max-width: 80%;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.mat-action-row {
+  place-content: space-between;
+}
+
+.image-wrapper {
+  width: 100%;
+}

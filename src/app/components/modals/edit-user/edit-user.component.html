@@ -1,0 +1,60 @@
+<div class="wrapper">
+    <h3 mat-dialog-title class="col-10 mx-auto">Edit user</h3>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div mat-dialog-content>
+        <form [formGroup]="form" [hidden]="isLoading">
+            <div class="text-center">
+                <div class="col-10 mx-auto">
+                    <mat-form-field class="col-6 pl-0">
+                        <input matInput placeholder="First name" type="text" formControlName="firstName" required />
+                    </mat-form-field>
+
+                    <mat-form-field class="col-6 pr-0">
+                        <input matInput placeholder="Last name" type="text" formControlName="lastName" required />
+                    </mat-form-field>
+                </div>
+
+                <div class="col-10 mx-auto">
+                    <mat-form-field class="col-6 pl-0">
+                        <input matInput placeholder="email" type="email" formControlName="email" />
+                    </mat-form-field>
+
+                    <mat-form-field class="col-6 pr-0">
+                        <mat-label>Select position:</mat-label>
+                        <mat-select formControlName="position" required>
+                            <mat-option value="librarian">
+                                Librarian
+                            </mat-option>
+                            <mat-option value="admin">
+                                Admin
+                            </mat-option>
+                            <mat-option [disabled]="user.position !== 'super-admin'" value="super-admin">
+                                Super-admin
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+                    <img [src]="imagePreview" alt="image" />
+                </div>
+                <div>
+                    <button mat-stroked-button type="button" (click)="filePicker.click()">
+                        Pick image</button><br />
+                    <input type="file" name="" id="" #filePicker accept="image/*" (change)="onImagePicked($event)" />
+                </div>
+                <div class="d-flex justify-content-around">
+                    <button mat-button color="primary" [mat-dialog-close]="false">
+                        Close
+                    </button>
+                    <button mat-button color="primary" (click)="save()">
+                        {{ data.edit ? "Save" : "Add" }}
+                    </button>
+                    <button mat-button *ngIf="data.edit" color="warn" (click)="delete()">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

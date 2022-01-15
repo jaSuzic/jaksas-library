@@ -1,0 +1,15 @@
+.login-container {
+  margin: 0 auto;
+  margin-top: 4rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  height: fit-content;
+}
+
+.button-about {
+  margin-left: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+  margin-top: 2rem;
+  float: right;
+}

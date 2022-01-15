@@ -1,0 +1,83 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <div class="logo">
+            <a [routerLink]="['/']">
+                <img src="assets/logo.png" alt="Logo image" />
+            </a>
+        </div>
+        <span class="spacer"></span>
+
+        <div class="right">
+            <div>
+                <mat-card class="align-items-center mat-elevation-z12">
+                    <div class="personal-image">
+                        <img [src]="generateUserImageUrl()" alt="image" class="round-img"
+                            onerror="this.onerror=null;this.src='assets/noImage.png';" />
+                    </div>
+
+                    <div class="personal-data">
+                        <form class="w-100">
+                            <div class="form-container">
+                                <div class="input-field">
+                                    <span class="small-font">Name: </span><br />
+                                    <span class="bigger-display-font">{{ user.lastName }} {{ user.firstName }}</span>
+                                </div>
+                                <div class="input-field">
+                                    <span class="small-font">Position: </span><br />
+                                    <span class="bigger-display-font">{{ user.position }}</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </mat-card>
+            </div>
+
+            <div class="buttons show-buttons col-12 d-flex justify-content-between">
+                <button mat-raised-button routerLink="/new-rent">
+                    new rent
+                </button>
+                <span class="spacer"></span>
+
+                <button mat-raised-button routerLink="/active-rents">
+                    return book
+                </button>
+                <span class="spacer"></span>
+
+                <button mat-raised-button (click)="addNewMember()">
+                    new member
+                </button>
+                <span class="spacer"></span>
+
+                <button mat-raised-button (click)="addNewBook()">
+                    new book
+                </button>
+                <span class="spacer"></span>
+
+                <button (click)="logout()" mat-raised-button>
+                    Logout
+                </button>
+            </div>
+
+            <button mat-button [matMenuTriggerFor]="menu" class="show-menu">
+                Menu
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/new-rent">
+                    new rent
+                </button>
+                <button mat-menu-item routerLink="/active-rents">
+                    return book
+                </button>
+                <button mat-menu-item (click)="addNewMember()">
+                    new member
+                </button>
+                <button mat-menu-item (click)="addNewBook()">
+                    new book
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    Logout
+                </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

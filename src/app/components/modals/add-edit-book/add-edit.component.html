@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <h3 mat-dialog-title class="col-10 mx-auto">
+        {{ data.edit ? "Edit book" : "Add new book" }}
+    </h3>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div mat-dialog-content [hidden]="isLoading" class="cancel-overflow">
+        <form [formGroup]="form">
+            <div class="text-center">
+                <mat-form-field class="col-10">
+                    <input matInput placeholder="Book title" type="text" formControlName="title" required />
+                </mat-form-field>
+
+                <mat-form-field class="col-10">
+                    <input matInput placeholder="Book author" type="text" formControlName="author" required />
+                </mat-form-field>
+
+                <div class="d-flex justify-content-center">
+                    <mat-form-field class="col-5">
+                        <input matInput placeholder="Year of release" type="number" formControlName="year" required />
+                    </mat-form-field>
+
+                    <div class="col-5">
+                        <div class="image-preview" *ngIf="coverImage">
+                            <img [src]="coverImage" [alt]="form.value.title" />
+                        </div>
+                        <div>
+                            <button mat-stroked-button type="button" (click)="filePicker.click()">
+                                {{ data.edit ? "Change image" : "Insert cover image" }}
+                            </button>
+                            <input type="file" name="" id="" #filePicker accept="image/*"
+                                (change)="onImagePicked($event)" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-10 d-flex justify-content-between mx-auto">
+                    <button mat-button color="primary" [mat-dialog-close]="false">
+                        Close
+                    </button>
+                    <button mat-button color="primary" (click)="save()">
+                        {{ data.edit ? "Save" : "Add" }}
+                    </button>
+                    <button mat-button *ngIf="data.edit" color="warn" (click)="delete()">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
