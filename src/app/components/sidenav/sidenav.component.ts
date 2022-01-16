@@ -20,8 +20,4 @@ export class SidenavComponent implements OnInit {
     onClick() {
         this.clicked.emit(true);
     }
-
-    isAdmin() {
-        return this.user.position === 'admin' || this.user.position === 'super-admin'
-    }
 }
